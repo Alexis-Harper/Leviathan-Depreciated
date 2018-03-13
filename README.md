@@ -3,6 +3,10 @@
 **Created By:**
 Michael Bledsoe
 
+**Dungeoneers (Dungeon Designer):**
+Michael Bledsoe &
+Asher Dack
+
 **Head of Development:**
 Alexis Harper
 
