@@ -1,6 +1,6 @@
 # Leviathan
 
-##MAAAAAL
+## MAAAAAL
 
 **Created By:**
 Michael Bledsoe
