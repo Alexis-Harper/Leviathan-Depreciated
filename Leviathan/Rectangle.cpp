@@ -121,3 +121,13 @@ void Rectangle::scale(float width, float height) {
 	this->height *= height;
 
 }
+
+//Rotate hitbox 90*
+void Rectangle::flip() {
+
+	float temp = this->width;
+	
+	this->width = this->height;
+	this->height = temp;
+
+}

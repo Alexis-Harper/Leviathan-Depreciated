@@ -28,6 +28,12 @@ Matrix::~Matrix() {
 
 }
 
+int Matrix::getSize() {
+
+	return this->size;
+
+}
+
 //Getters and setters
 
 std::vector<float> Matrix::getX() {
@@ -45,10 +51,14 @@ std::vector<float> Matrix::getY() {
 //Resize matrix
 void Matrix::resize(int num) {
 
-	size = num;
+	if (this->size != num) {
 
-	x.resize(num);
-	y.resize(num);
+		size = num;
+
+		x.resize(num);
+		y.resize(num);
+
+	}
 
 }
 
@@ -136,6 +146,7 @@ void Matrix::setMatrix(std::vector<float> x, std::vector<float> y) {
 Matrix Matrix::translate(float x, float y) {
 
 	Matrix returnMatrix;
+	returnMatrix.resize(this->size);
 
 	for (int i = 0; i < this->size; i++) {
 
@@ -152,6 +163,7 @@ Matrix Matrix::translate(float x, float y) {
 Matrix Matrix::scalar(float s) {
 
 	Matrix returnMatrix;
+	returnMatrix.resize(this->size);
 
 	for (int i = 0; i < this->size; i++) {
 
@@ -168,6 +180,7 @@ Matrix Matrix::scalar(float s) {
 Matrix Matrix::multiply(float x1, float x2, float y1, float y2) {
 
 	Matrix returnMatrix;
+	returnMatrix.resize(this->size);
 
 	for (int i = 0; i < this->size; i++) {
 

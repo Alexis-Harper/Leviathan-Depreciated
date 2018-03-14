@@ -25,6 +25,8 @@ public:
 	void translate(float, float);
 	void scale(float, float);
 
+	void flip();
+
 private:
 
 	float x;

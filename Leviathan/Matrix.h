@@ -9,6 +9,8 @@ public:
 	Matrix(int);
 	~Matrix();
 
+	int getSize();
+
 	std::vector<float> getX();
 	std::vector<float> getY();
 
