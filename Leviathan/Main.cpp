@@ -1,10 +1,13 @@
 
 #include <iostream>
 #include <chrono>
+#include "Matrix.h"
+#include "Vector.h"
 
 using namespace std;
 
 constexpr std::chrono::nanoseconds timestep(16ms); //60 ticks per sec
+
 
 int main() {
 
