@@ -1,6 +1,6 @@
 #include "Matrix.h"
 
-std::vector<float> x;
+std::vector<float> x; //Dynamic 2xY matrix size
 std::vector<float> y;
 
 Matrix::Matrix() {
@@ -28,6 +28,8 @@ Matrix::~Matrix() {
 
 }
 
+//Getters and setters
+
 std::vector<float> Matrix::getX() {
 
 	return x;
@@ -40,6 +42,7 @@ std::vector<float> Matrix::getY() {
 
 }
 
+//Resize matrix
 void Matrix::resize(int num) {
 
 	size = num;
@@ -51,36 +54,86 @@ void Matrix::resize(int num) {
 
 void Matrix::setX(int adress, float value) {
 
-	this->x[adress] = value;
+	if (adress < this->size) {
+
+			this->x[adress] = value;
+
+	}
 
 }
 
 void Matrix::setY(int adress, float value) {
 
-	this->y[adress] = value;
+	if (adress < this->size) {
+
+		this->y[adress] = value;
+
+	}
 
 }
 
 void Matrix::setX(std::vector<float> x) {
 
-	this->x = x;
+	if (x.size == this->size) {
+
+		this->x = x;
+
+	} else {
+
+		this->size = x.size;
+
+		this->x.resize(x.size);
+		this->y.resize(x.size);
+
+		this->x = x;
+
+	}
 
 }
 
 void Matrix::setY(std::vector<float> y) {
 
-	this->y = y;
+	if (x.size == this->size) {
+
+		this->y = y;
+
+	} else {
+
+		this->size = x.size;
+
+		this->x.resize(x.size);
+		this->y.resize(x.size);
+
+		this->y = y;
+
+	}
 
 }
 
 void Matrix::setMatrix(std::vector<float> x, std::vector<float> y) {
 
-	this->x = x;
-	this->y = y;
+	if (x.size == this->size) {
+
+		this->x = x;
+		this->y = y;
+
+	}
+	else {
+
+		this->size = x.size;
+
+		this->x.resize(x.size);
+		this->y.resize(x.size);
+
+		this->x = x;
+		this->y = y;
+
+	}
 
 }
 
-Matrix Matrix::transform(float x, float y) {
+//Translate matrix
+Matrix Matrix::translate(float x, float y) {
 
 	Matrix returnMatrix;
 
@@ -95,6 +148,7 @@ Matrix Matrix::transform(float x, float y) {
 
 }
 
+//Multiply this by a scalar
 Matrix Matrix::scalar(float s) {
 
 	Matrix returnMatrix;
@@ -110,6 +164,7 @@ Matrix Matrix::scalar(float s) {
 
 }
 
+//Multiply 2x2 by a 2xY
 Matrix Matrix::multiply(float x1, float x2, float y1, float y2) {
 
 	Matrix returnMatrix;

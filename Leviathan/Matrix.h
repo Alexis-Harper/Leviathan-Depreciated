@@ -21,7 +21,7 @@ public:
 	void setY(std::vector<float>);
 	void setMatrix(std::vector<float>, std::vector<float>);
 
-	Matrix transform(float, float);
+	Matrix translate(float, float);
 	Matrix scalar(float);
 	Matrix multiply(float, float, float, float);
 

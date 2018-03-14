@@ -14,6 +14,11 @@ public:
 	float getWidth();
 	float getHeight();
 
+	void setX(float);
+	void setY(float);
+	void setWidth(float);
+	void setHeight(float);
+
 	void setPos(float, float);
 	void setSize(float, float);
 

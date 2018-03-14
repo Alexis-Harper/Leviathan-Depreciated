@@ -20,7 +20,7 @@ int main() {
 		//Limit FPS to 60 Hz
 		if (std::chrono::duration_cast<std::chrono::nanoseconds>(deltaTime) >= timestep) {
 
-			startTime = std::chrono::high_resolution_clock::now();
+			startTime = std::chrono::high_resolution_clock::now(); //Reset time every frame (necessary for propper timing)
 
 			//Get inputs
 
