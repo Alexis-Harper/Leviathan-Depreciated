@@ -32,7 +32,7 @@ private:
 	std::vector<float> x;
 	std::vector<float> y;
 
-	int size;
+	int size = 0;
 
 };
 

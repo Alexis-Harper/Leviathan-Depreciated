@@ -84,16 +84,16 @@ void Matrix::setY(int adress, float value) {
 
 void Matrix::setX(std::vector<float> x) {
 
-	if (x.size == this->size) {
+	if (x.size() == this->size) {
 
 		this->x = x;
 
 	} else {
 
-		this->size = x.size;
+		this->size = x.size();
 
-		this->x.resize(x.size);
-		this->y.resize(x.size);
+		this->x.resize(x.size());
+		this->y.resize(x.size());
 
 		this->x = x;
 
@@ -103,16 +103,16 @@ void Matrix::setX(std::vector<float> x) {
 
 void Matrix::setY(std::vector<float> y) {
 
-	if (x.size == this->size) {
+	if (x.size() == this->size) {
 
 		this->y = y;
 
 	} else {
 
-		this->size = x.size;
+		this->size = x.size();
 
-		this->x.resize(x.size);
-		this->y.resize(x.size);
+		this->x.resize(x.size());
+		this->y.resize(x.size());
 
 		this->y = y;
 
@@ -122,18 +122,17 @@ void Matrix::setY(std::vector<float> y) {
 
 void Matrix::setMatrix(std::vector<float> x, std::vector<float> y) {
 
-	if (x.size == this->size) {
+	if (x.size() == this->size) {
 
 		this->x = x;
 		this->y = y;
 
-	}
-	else {
+	} else {
 
-		this->size = x.size;
+		this->size = x.size();
 
-		this->x.resize(x.size);
-		this->y.resize(x.size);
+		this->x.resize(x.size());
+		this->y.resize(x.size());
 
 		this->x = x;
 		this->y = y;

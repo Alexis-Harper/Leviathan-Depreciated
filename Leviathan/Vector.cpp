@@ -33,7 +33,7 @@ float Vector::dotProduct(Vector v1, Vector v2) {
 
 	}
 
-	float sum;
+	float sum = 0;
 
 	for (int i = 0; i < v1.size; i++) {
 
@@ -67,7 +67,7 @@ Vector Vector::crossProduct(Vector v1, Vector v2) {
 //Get magnitude, duh
 float Vector::magnitude(Vector v) {
 
-	float sum; //Pythagorean theorum sum (a^2
+	float sum = 0; //Pythagorean theorum sum (a^2
 
 	for (int i = 0; i < v.size; i++) {
 
@@ -92,6 +92,10 @@ float Vector::getValue(int adress) {
 	if (adress < this->size) {
 
 		return vect[adress];
+
+	} else {
+
+		return NULL;
 
 	}
 
