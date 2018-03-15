@@ -2,6 +2,13 @@
 #include <iostream>
 #include <chrono>
 
+// GLEW
+#define GLEW_STATIC
+#include "../ExternalResources/glew-2.1.0/include/GL/glew.h"
+
+// GLFW
+#include "../ExternalResources/glfw-3.2.1/include/GLFW/glfw3.h"
+
 using namespace std;
 
 constexpr std::chrono::nanoseconds timestep(16ms); //60 ticks per sec
