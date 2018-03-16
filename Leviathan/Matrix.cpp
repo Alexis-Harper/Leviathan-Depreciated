@@ -23,25 +23,30 @@ Matrix::Matrix(int num) {
 
 Matrix::Matrix(std::vector<float> x, std::vector<float> y) {
 
+	int xSize = x.size(); //This prevents errors ans speeds up the program
+	int ySize = y.size();
+
 	std::vector<float> tempX = x;
 	std::vector<float> tempY = y;
 
 	//Check if two vectors are the same size
-	if (x.size() > y.size()) {
+	if (xSize > ySize) {
 
-		tempY.resize(x.size()); //Make sure y is the right size
+		tempY.resize(xSize); //Make sure y is the right size
 
-		for (int i = y.size(); i < x.size(); i++) {
+		for (int i = ySize; i < xSize; i++) {
 
 			tempY[i] = 0;
 
 		}
 
-	} else if (tempY.size() > tempX.size()) {
+	} else if (ySize > xSize) {
 
-		tempX.resize(tempY.size()); //Make sure that x is the right size
+		xSize = ySize;
 
-		for (int i = x.size(); i < y.size(); i++) {
+		tempX.resize(ySize); //Make sure that x is the right size
+
+		for (int i = xSize; i < ySize; i++) {
 
 			tempX[0] = 0;
 
@@ -49,7 +54,7 @@ Matrix::Matrix(std::vector<float> x, std::vector<float> y) {
 
 	}
 
-	this->size = x.size(); //Size it to the correct size
+	this->size = xSize; //Size it to the correct size
 
 	this->x.resize(this->size); //Resize
 	this->y.resize(this->size);
@@ -163,26 +168,30 @@ void Matrix::setY(std::vector<float> y) {
 
 void Matrix::setMatrix(std::vector<float> x, std::vector<float> y) {
 
+	int xSize = x.size(); //This prevents errors
+	int ySize = y.size();
+
 	std::vector<float> tempX = x;
 	std::vector<float> tempY = y;
 
 	//Check if two vectors are the same size
-	if (x.size() > y.size()) {
+	if (xSize > ySize) {
 
-		tempY.resize(x.size()); //Make sure y is the right size
+		tempY.resize(xSize); //Make sure y is the right size
 
-		for (int i = y.size(); i < x.size(); i++) {
+		for (int i = ySize; i < xSize; i++) {
 
 			tempY[i] = 0;
 
 		}
 
-	}
-	else if (tempY.size() > tempX.size()) {
+	} else if (ySize > xSize) {
 
-		tempX.resize(tempY.size()); //Make sure that x is the right size
+		xSize = ySize;
 
-		for (int i = x.size(); i < y.size(); i++) {
+		tempX.resize(ySize); //Make sure that x is the right size
+
+		for (int i = xSize; i < ySize; i++) {
 
 			tempX[0] = 0;
 
@@ -190,12 +199,12 @@ void Matrix::setMatrix(std::vector<float> x, std::vector<float> y) {
 
 	}
 
-	if (tempX.size() != this->size) {
+	if (xSize != this->size) {
 
-		this->size = x.size(); //Resize vector if necessary to make room or clean
+		this->size = xSize; //Resize vector if necessary to make room or clean
 
-		this->x.resize(x.size());
-		this->y.resize(x.size());
+		this->x.resize(xSize);
+		this->y.resize(xSize);
 
 	}
 
