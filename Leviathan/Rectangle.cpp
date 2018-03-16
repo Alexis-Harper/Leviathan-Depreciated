@@ -110,24 +110,24 @@ void Rectangle::setSize(float width, float height) {
 
 void Rectangle::translate(float x, float y) {
 
-	this->x += x;
+	this->x += x; //Move
 	this->y += y;
 
 }
 
 void Rectangle::scale(float width, float height) {
 
-	this->width *= width;
+	this->width *= width; //Scales the width and height
 	this->height *= height;
 
 }
 
-//Rotate hitbox 90*
+//Rotate hitbox 90* (flip width and height
 void Rectangle::flip() {
 
-	float temp = this->width;
+	float temp = this->width; //Temporary value because width value is about to be replaced
 	
-	this->width = this->height;
-	this->height = temp;
+	this->width = this->height; //Replace width by height
+	this->height = temp; //Replace height by previous width
 
 }

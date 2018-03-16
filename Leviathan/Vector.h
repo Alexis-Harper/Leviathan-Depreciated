@@ -36,4 +36,3 @@ private:
 	int size;
 
 };
-
