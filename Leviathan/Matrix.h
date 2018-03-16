@@ -7,6 +7,8 @@ public:
 
 	Matrix();
 	Matrix(int);
+	Matrix(std::vector<float>, std::vector<float>);
+
 	~Matrix();
 
 	int getSize();
