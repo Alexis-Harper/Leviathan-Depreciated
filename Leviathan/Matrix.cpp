@@ -5,7 +5,7 @@ std::vector<float> y;
 
 Matrix::Matrix() {
 
-	size = 2;
+	size = 2; //Default size of 2x2
 
 	x.resize(2);
 	y.resize(2);
@@ -14,27 +14,65 @@ Matrix::Matrix() {
 
 Matrix::Matrix(int num) {
 
-	size = num;
+	size = num; //Set size
 
 	x.resize(num);
 	y.resize(num);
 
 }
 
+Matrix::Matrix(std::vector<float> x, std::vector<float> y) {
+
+	std::vector<float> tempX = x;
+	std::vector<float> tempY = y;
+
+	//Check if two vectors are the same size
+	if (x.size() > y.size()) {
+
+		tempY.resize(x.size()); //Make sure y is the right size
+
+		for (int i = y.size(); i < x.size(); i++) {
+
+			tempY[i] = 0;
+
+		}
+
+	} else if (tempY.size() > tempX.size()) {
+
+		tempX.resize(tempY.size()); //Make sure that x is the right size
+
+		for (int i = x.size(); i < y.size(); i++) {
+
+			tempX[0] = 0;
+
+		}
+
+	}
+
+	this->size = x.size(); //Size it to the correct size
+
+	this->x.resize(this->size); //Resize
+	this->y.resize(this->size);
+
+	this->x = tempX; //Set vectors
+	this->y = tempY;
+
+}
+
 Matrix::~Matrix() {
 
-	x.clear();
+	x.clear(); //Clear up space on RAM
 	y.clear();
 
 }
+
+//Getters and setters
 
 int Matrix::getSize() {
 
 	return this->size;
 
 }
-
-//Getters and setters
 
 std::vector<float> Matrix::getX() {
 
@@ -51,11 +89,12 @@ std::vector<float> Matrix::getY() {
 //Resize matrix
 void Matrix::resize(int num) {
 
+	//Only change if the size is different (I don't know if this is necessary, but it probably only adds 2 bytes)
 	if (this->size != num) {
 
-		size = num;
+		size = num; //Variable to store size for faster running (no method requirement)
 
-		x.resize(num);
+		x.resize(num); //Resize
 		y.resize(num);
 
 	}
@@ -64,6 +103,7 @@ void Matrix::resize(int num) {
 
 void Matrix::setX(int adress, float value) {
 
+	//Make sure it fits in the vector
 	if (adress < this->size) {
 
 			this->x[adress] = value;
@@ -74,6 +114,7 @@ void Matrix::setX(int adress, float value) {
 
 void Matrix::setY(int adress, float value) {
 
+	//Make sure it fits in the vector
 	if (adress < this->size) {
 
 		this->y[adress] = value;
@@ -86,16 +127,16 @@ void Matrix::setX(std::vector<float> x) {
 
 	if (x.size() == this->size) {
 
-		this->x = x;
+		this->x = x; //If the vector is the same size as before, just add it
 
 	} else {
 
-		this->size = x.size();
+		this->size = x.size(); //Resize vector if necessary to make room or clean (mem adress for faster running)
 
-		this->x.resize(x.size());
+		this->x.resize(x.size()); //Resize
 		this->y.resize(x.size());
 
-		this->x = x;
+		this->x = x; //Add it
 
 	}
 
@@ -105,16 +146,16 @@ void Matrix::setY(std::vector<float> y) {
 
 	if (x.size() == this->size) {
 
-		this->y = y;
+		this->y = y; //If the vector is the same size as before, just add it
 
 	} else {
 
-		this->size = x.size();
+		this->size = x.size(); //Resize vector if necessary to make room or clean (mem adress for faster running)
 
-		this->x.resize(x.size());
+		this->x.resize(x.size()); //Resize
 		this->y.resize(x.size());
 
-		this->y = y;
+		this->y = y; //Add it
 
 	}
 
@@ -122,72 +163,94 @@ void Matrix::setY(std::vector<float> y) {
 
 void Matrix::setMatrix(std::vector<float> x, std::vector<float> y) {
 
-	if (x.size() == this->size) {
+	std::vector<float> tempX = x;
+	std::vector<float> tempY = y;
 
-		this->x = x;
-		this->y = y;
+	//Check if two vectors are the same size
+	if (x.size() > y.size()) {
 
-	} else {
+		tempY.resize(x.size()); //Make sure y is the right size
 
-		this->size = x.size();
+		for (int i = y.size(); i < x.size(); i++) {
+
+			tempY[i] = 0;
+
+		}
+
+	}
+	else if (tempY.size() > tempX.size()) {
+
+		tempX.resize(tempY.size()); //Make sure that x is the right size
+
+		for (int i = x.size(); i < y.size(); i++) {
+
+			tempX[0] = 0;
+
+		}
+
+	}
+
+	if (tempX.size() != this->size) {
+
+		this->size = x.size(); //Resize vector if necessary to make room or clean
 
 		this->x.resize(x.size());
 		this->y.resize(x.size());
 
-		this->x = x;
-		this->y = y;
-
 	}
+
+	this->x = x; //Add it
+	this->y = y;
 
 }
 
 //Translate matrix
 Matrix Matrix::translate(float x, float y) {
 
-	Matrix returnMatrix;
-	returnMatrix.resize(this->size);
+	Matrix returnMatrix; //Create a return matrix
+	returnMatrix.resize(this->size); //Size return matrix so that it works
 
 	for (int i = 0; i < this->size; i++) {
 
-		returnMatrix.x[i] = this->x[i] + x;
+		returnMatrix.x[i] = this->x[i] + x; //Add value to all adresses in the respective row
 		returnMatrix.y[i] = this->y[i] + y;
 
 	}
 
-	return returnMatrix;
+	return returnMatrix; //Return return matrix
 
 }
 
 //Multiply this by a scalar
 Matrix Matrix::scalar(float s) {
 
-	Matrix returnMatrix;
-	returnMatrix.resize(this->size);
+	Matrix returnMatrix; //Create a return matrix
+	returnMatrix.resize(this->size); //Size return matrix so that it works
 
 	for (int i = 0; i < this->size; i++) {
 
-		returnMatrix.x[i] = this->x[i] * s;
+		returnMatrix.x[i] = this->x[i] * s; //Multiply all adresses by the scalar
 		returnMatrix.y[i] = this->y[i] * s;
 
 	}
 
-	return returnMatrix;
+	return returnMatrix; //Return return matrix
 
 }
 
-//Multiply 2x2 by a 2xY
+//Multiply 2x2 by a 2xY (this is really complicated)
 Matrix Matrix::multiply(float x1, float x2, float y1, float y2) {
 
-	Matrix returnMatrix;
-	returnMatrix.resize(this->size);
+	Matrix returnMatrix; //Create return matrix
+	returnMatrix.resize(this->size); //Size return matrix so that it works
 
 	for (int i = 0; i < this->size; i++) {
 
-		returnMatrix.x[i] = (this->x[i] * x1) + (this->y[i] * x2);
+		returnMatrix.x[i] = (this->x[i] * x1) + (this->y[i] * x2); //I'm not even going to bother
 		returnMatrix.y[i] = (this->x[i] * y1) + (this->y[i] * y2);
 
 	}
 
-	return returnMatrix;
+	return returnMatrix; //Return return matrix
 
 }
