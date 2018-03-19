@@ -1,7 +1,5 @@
 #include "Vector.h"
 
-#include <cmath>
-
 Vector::Vector() {
 
 	this->size = 2; //Default size of 2D matrix (variable to speed things up)

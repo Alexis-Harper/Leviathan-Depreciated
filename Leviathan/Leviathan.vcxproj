@@ -76,11 +76,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\ExternalResources\glew-2.1.0\include\;$(SolutionDir)\..\ExternalResources\glfw-3.2.1\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <UndefinePreprocessorDefinitions>GLEW_STATIC</UndefinePreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)ExternalResources\glew-2.1.0\include\;$(SolutionDir)ExternalResources\glfw-3.2.1\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <UndefinePreprocessorDefinitions>GLEW_STATIC;STB_IMAGE_IMPLEMENTATION</UndefinePreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)\..\ExternalResources\glew-2.1.0\lib\Release\Win32\;$(SolutionDir)\..\ExternalResources\glfw-3.2.1\lib-vc2015\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)ExternalResources\glew-2.1.0\lib\Release\Win32\;$(SolutionDir)ExternalResources\glfw-3.2.1\lib-vc2015\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -127,12 +127,15 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Matrix.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="stb_image.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
