@@ -1,5 +1,15 @@
 
-#include "Universal_Header.h"
+#include <iostream>
+#include <chrono>
+
+// GLEW
+#define GLEW_STATIC
+#include <GL\glew.h>
+
+// GLFW
+#include <GLFW\glfw3.h>
+
+using namespace std;
 
 constexpr std::chrono::nanoseconds timestep(16ms); //60 ticks per sec
 
@@ -167,7 +177,7 @@ int main() {
 
 			//Update graphics
 
-			glClearColor(1.0f, 1.0f, 1.0f, 1.0f); //Black background
+			glClearColor(0.0f, 0.0f, 0.0f, 1.0f); //Black background
 
 			glClear(GL_COLOR_BUFFER_BIT); //Clears frame so next can render
 

@@ -15,6 +15,7 @@ Player::Player() {
 		glGenerateMipmap(GL_TEXTURE_2D);
 
 		stbi_image_free(image);
+
 	}
 
 }

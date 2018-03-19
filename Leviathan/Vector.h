@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Universal_Header.h"
+#include <cmath>
+#include <vector>
 
 class Vector {
 

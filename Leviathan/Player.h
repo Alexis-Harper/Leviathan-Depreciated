@@ -1,6 +1,17 @@
 #pragma once
 
-#include "Universal_Header.h"
+#include <iostream>
+
+//GLEW
+#define GLEW_STATIC
+#include <gl\glew.h>
+
+//GLFW
+#include <GLFW\glfw3.h>
+
+//stb_image
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 
 class Player {
 
