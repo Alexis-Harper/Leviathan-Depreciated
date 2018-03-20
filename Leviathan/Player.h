@@ -1,6 +1,10 @@
 #pragma once
 
 #include <iostream>
+#include <string>
+
+#include <fstream>
+#include <sstream>
 
 //GLEW
 #define GLEW_STATIC
@@ -13,6 +17,10 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
+#include "Rectangle.h"
+
+using namespace std;
+
 class Player {
 
 public:
@@ -24,11 +32,18 @@ public:
 
 private:
 
+	Rectangle hitbox;
+
 	unsigned char *image;
 
 	int width, height, comp;
 
-	unsigned int texture;
+	unsigned int texture, VBO;
+
+	int vertexShader;
+	int fragmentShader;
+
+	unsigned int shaderProgram;
 
 };
 
