@@ -38,7 +38,7 @@ private:
 
 	int width, height, comp;
 
-	unsigned int texture, VBO;
+	unsigned int texture, VBO, VAO, EBO;
 
 	int vertexShader;
 	int fragmentShader;
