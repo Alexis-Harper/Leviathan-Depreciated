@@ -91,18 +91,18 @@ Player::Player() {
 	glGenBuffers(1, &VBO); //Generate two buffer ID's (one for vertexes, the other for indecies)
 	glGenBuffers(1, &EBO);
 
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertecies), vertecies, GL_DYNAMIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO); //Bind buffer VBO
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertecies), vertecies, GL_DYNAMIC_DRAW); //Add vertecies to binded buffer (VBO)
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indecies), indecies, GL_STATIC_DRAW);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO); //Bind buffer EBO
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indecies), indecies, GL_STATIC_DRAW); //Add indecies to binded buffer (EBO)
 
 	//This part is really complecated
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(0)); //Position array
-	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(0); 
 
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
-	glEnableVertexAttribArray(1);
+	glEnableVertexAttribArray(1); 
 
 	image = stbi_load("Player.png", &width, &height, &comp, STBI_rgb_alpha); //Load image
 
@@ -124,10 +124,10 @@ Player::Player() {
 
 Player::~Player() {
 
-	glDeleteShader(vertexShader);
+	glDeleteShader(vertexShader); //Delete shaders
 	glDeleteShader(fragmentShader);
 
-	glDeleteVertexArrays(1, &VAO);
+	glDeleteVertexArrays(1, &VAO); //Delete buffers
 	glDeleteBuffers(1, &VBO);
 	glDeleteBuffers(1, &EBO);
 

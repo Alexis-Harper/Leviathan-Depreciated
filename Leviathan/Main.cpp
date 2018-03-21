@@ -13,11 +13,30 @@ using namespace std;
 
 constexpr std::chrono::nanoseconds timestep(16ms); //60 ticks per sec
 
+static double cursorPosX; //Mouse position X
+static double cursorPosY; //Mouse position Y
+
+//Enum that keeps track of where in the game you are, because that's an important
 enum GameState {
 
 	MENU, GAME
 
 } state;
+
+//GLFW callbacks
+
+void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
+
+	glViewport(0, 0, width, height); //Making your life easier one callback at a time
+
+}
+
+void mouse_pos_callback(GLFWwindow *window, double xpos, double ypos) {
+
+	cursorPosX = xpos; //Set cursor position variables to mouse position every frame the mouse moves
+	cursorPosY = ypos;
+
+}
 
 int main() {
 
@@ -41,15 +60,15 @@ int main() {
 
 	glfwWindowHint(GLFW_RESIZABLE, GL_TRUE); //Window resizing will distort the image, but screw it
 
-	int windowResX = 0;
+	int windowResX = 0; //Temporary values to set the desired window resoution
 	int windowResY = 0;
 
 	const GLFWvidmode *vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor()); //Get monitor dimentions in a struct (look up a C tutorial)
 
-	int w = vidmode->width;
+	int w = vidmode->width; //Get monitor dimentions in two variables
 	int h = vidmode->height;
 
-	//Set dimentions of window to max sandard size for the 
+	//Set dimentions of window to max sandard size for widescreen (I wrote this in Java and then recreated all the variables with the same name before this and copied and pasted. I love simiar programming languages)
 	if (h < 240 && w < 256) {
 
 		//144p 4:3
@@ -131,7 +150,7 @@ int main() {
 
 	}
 
-	glfwMakeContextCurrent(window);
+	glfwMakeContextCurrent(window); //Make GLFW focus arround window
 
 	int frameWidth, frameHeight;
 	glfwGetFramebufferSize(window, &frameWidth, &frameHeight); //Gets virtual dimentions of window
@@ -150,6 +169,9 @@ int main() {
 	}
 
 	glViewport(0, 0, frameWidth, frameHeight); //This will make your life so much easier
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback); //Callback every frame size change (this will also make your life easier)
+
+	glfwSetCursorPosCallback(window, mouse_pos_callback); //Mouse position callback for mouse positioning
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER); //Make textures act like that
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
@@ -157,7 +179,7 @@ int main() {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); //Make pixelated textures look pixelated
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //Make it to where a picture smaller than the texture looks good
 
-	auto startTime = std::chrono::high_resolution_clock::now(); //Get time
+	auto startTime = std::chrono::high_resolution_clock::now(); //Get time right after initialization (initial time before first start time reset later on)
 
 	//Main loop
 	while (!glfwWindowShouldClose(window)) {
@@ -169,7 +191,7 @@ int main() {
 
 			startTime = std::chrono::high_resolution_clock::now(); //Reset time every frame (necessary for propper timing)
 
-			glfwPollEvents(); //Checks for events such as glfwWindowShouldClose() or controller input
+			glfwPollEvents(); //Checks for events such as glfwWindowShouldClose() or controller input (including callbacks)
 			
 			//Get inputs
 
@@ -177,7 +199,7 @@ int main() {
 
 			//Update graphics
 
-			glClearColor(0.0f, 0.0f, 0.0f, 1.0f); //Black background
+			glClearColor(0.0f, 0.0f, 0.0f, 1.0f); //Black background (like ALttP)
 
 			glClear(GL_COLOR_BUFFER_BIT); //Clears frame so next can render
 
@@ -187,7 +209,9 @@ int main() {
 
 	}
 
-	glfwTerminate(); 
+	glfwDestroyWindow(window); //Destroy window
+
+	glfwTerminate(); //Close GLFW
 
 	return 0;
 

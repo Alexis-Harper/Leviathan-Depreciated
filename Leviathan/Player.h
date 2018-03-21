@@ -46,4 +46,3 @@ private:
 	unsigned int shaderProgram;
 
 };
-
