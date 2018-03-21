@@ -16,6 +16,27 @@
     <Filter Include="Resource Files\shaders">
       <UniqueIdentifier>{eeff0225-d2ec-40bf-91bb-a30b7a517e29}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\images">
+      <UniqueIdentifier>{0cad908b-9fe9-4afc-8657-cf9c402a87f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\images\sprites">
+      <UniqueIdentifier>{174a9730-9e3f-42ce-9777-926572131c74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\images\sprites\player">
+      <UniqueIdentifier>{ae9333f9-1836-4917-80d6-5f6b90b6d279}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\audio">
+      <UniqueIdentifier>{8deda30f-601b-4c3f-b4b1-3452374a7252}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\audio\effects">
+      <UniqueIdentifier>{355587ba-dfa1-4f6d-870c-cdef5f42fc6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\audio\music">
+      <UniqueIdentifier>{52da9062-e3a0-45ec-b8b3-c842fa6d7148}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\images\background">
+      <UniqueIdentifier>{55460f6e-8fb6-4444-b863-07a1c7ad00cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -52,10 +73,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="player_vs.glsl">
+    <None Include="..\Assets\shaders\player_fs.glsl">
       <Filter>Resource Files\shaders</Filter>
     </None>
-    <None Include="player_fs.glsl">
+    <None Include="..\Assets\shaders\player_vs.glsl">
       <Filter>Resource Files\shaders</Filter>
     </None>
   </ItemGroup>

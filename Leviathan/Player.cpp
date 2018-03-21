@@ -29,8 +29,8 @@ Player::Player() {
 
 	try {
 
-		vShaderFile.open("player_vs.glsl"); //Load shader files
-		fShaderFile.open("player_fs.glsl");
+		vShaderFile.open("Assets/shaders/player_vs.glsl"); //Load shader files
+		fShaderFile.open("Assets/shaders/player_fs.glsl");
 
 		vShaderStream << vShaderFile.rdbuf(); //Convert file to string stream
 		fShaderStream << fShaderFile.rdbuf();
@@ -104,7 +104,7 @@ Player::Player() {
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
 	glEnableVertexAttribArray(1); 
 
-	image = stbi_load("Player.png", &width, &height, &comp, STBI_rgb_alpha); //Load image
+	image = stbi_load("Assets/images/sprites/player/Player.png", &width, &height, &comp, STBI_rgb_alpha); //Load image
 
 	//Check if image loaded
 	if (image == 0) {
