@@ -62,7 +62,7 @@ Player::Player() {
 	if (!success) {
 
 		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-		std::cout << "[-] GLSL: Vertex Shader failed to compile\n" << infoLog << "\N";
+		std::cout << "[-] GLSL: Vertex Shader failed to compile\n" << infoLog << "\n";
 
 	} //*/
 
@@ -76,7 +76,7 @@ Player::Player() {
 	if (!success) {
 
 		glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-		std::cout << "[-] GLSL: Vertex Shader failed to compile\n" << infoLog << "\N";
+		std::cout << "[-] GLSL: Vertex Shader failed to compile\n" << infoLog << "\n";
 
 	} //*/
 

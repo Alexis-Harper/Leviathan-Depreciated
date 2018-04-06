@@ -1,15 +1,4 @@
-
-#include <iostream>
-#include <chrono>
-
-// GLEW
-#define GLEW_STATIC
-#include <GL\glew.h>
-
-// GLFW
-#include <GLFW\glfw3.h>
-
-using namespace std;
+#include "stdafx.h"
 
 constexpr std::chrono::nanoseconds timestep(16ms); //60 ticks per sec
 
@@ -23,20 +12,9 @@ enum GameState {
 
 } state;
 
-//GLFW callbacks
+void framebuffer_size_callback(GLFWwindow*, int, int);
 
-void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
-
-	glViewport(0, 0, width, height); //Making your life easier one callback at a time
-
-}
-
-void mouse_pos_callback(GLFWwindow *window, double xpos, double ypos) {
-
-	cursorPosX = xpos; //Set cursor position variables to mouse position every frame the mouse moves
-	cursorPosY = ypos;
-
-}
+void mouse_pos_callback(GLFWwindow*, double, double);
 
 int main() {
 
@@ -179,6 +157,8 @@ int main() {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); //Make pixelated textures look pixelated
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //Make it to where a picture smaller than the texture looks good
 
+	//Player player;
+
 	auto startTime = std::chrono::high_resolution_clock::now(); //Get time right after initialization (initial time before first start time reset later on)
 
 	//Main loop
@@ -199,6 +179,8 @@ int main() {
 
 			//Update graphics
 
+			//player.render();
+
 			glClearColor(0.0f, 0.0f, 0.0f, 1.0f); //Black background (like ALttP)
 
 			glClear(GL_COLOR_BUFFER_BIT); //Clears frame so next can render
@@ -214,5 +196,20 @@ int main() {
 	glfwTerminate(); //Close GLFW
 
 	return 0;
+
+}
+
+//GLFW callbacks
+
+void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
+
+	glViewport(0, 0, width, height); //Making your life easier one callback at a time
+
+}
+
+void mouse_pos_callback(GLFWwindow *window, double xpos, double ypos) {
+
+	cursorPosX = xpos; //Set cursor position variables to mouse position every frame the mouse moves
+	cursorPosY = ypos;
 
 }
