@@ -12,8 +12,9 @@ enum GameState {
 
 } state;
 
+//GLFW Callbacks
 void framebuffer_size_callback(GLFWwindow*, int, int);
-
+void key_callback(GLFWwindow*, int, int, int, int);
 void mouse_pos_callback(GLFWwindow*, double, double);
 
 int main() {
@@ -133,6 +134,11 @@ int main() {
 	int frameWidth, frameHeight;
 	glfwGetFramebufferSize(window, &frameWidth, &frameHeight); //Gets virtual dimentions of window
 
+	//Set callbacks
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+	glfwSetKeyCallback(window, key_callback);
+	glfwSetCursorPosCallback(window, mouse_pos_callback);
+
 	glewExperimental = GL_TRUE; //The magic of GLEW
 
 	//Initialize GLEW
@@ -166,8 +172,12 @@ int main() {
 
 		auto deltaTime = std::chrono::high_resolution_clock::now() - startTime; //Calculates delta (time since last frame)
 
+		inputObject.delta = std::chrono::duration_cast<std::chrono::nanoseconds>(deltaTime) / timestep;
+
 		//Limit FPS to 60 Hz
 		if (std::chrono::duration_cast<std::chrono::nanoseconds>(deltaTime) >= timestep) {
+
+			std::chrono::duration_cast<std::chrono::microseconds>(deltaTime);
 
 			startTime = std::chrono::high_resolution_clock::now(); //Reset time every frame (necessary for propper timing)
 
@@ -204,6 +214,12 @@ int main() {
 void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
 
 	glViewport(0, 0, width, height); //Making your life easier one callback at a time
+
+}
+
+void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods) {
+
+	inputObject.keyCallback(key, action); //Route keypresses
 
 }
 

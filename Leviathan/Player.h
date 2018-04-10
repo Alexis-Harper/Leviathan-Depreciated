@@ -2,30 +2,39 @@
 
 #include "stdafx.h"
 
-using namespace std;
-
 class Player {
+
+	//8 direction enum (for graphics)
+	enum Direction {
+
+		UP, UP_RIGHT, RIGHT, DOWN_RIGHT, DOWN_LEFT, LEFT, UP_LEFT, DOWN
+
+	} direction; //Create direction enum
 
 public:
 
 	Player();
 	~Player();
 
-	void render();
+	void update(); //Run on every tick (physics, motion, etc.)
+	void render(); //Run on every render (graphics, image, etc.)
 
 private:
 
-	Rectangle hitbox;
+	Rectangle hitbox; //Hitbox object
 
-	unsigned char *image;
+	float xPos = 0, yPos = 0; //Position
+	float vX = 0, vY = 0; //Velocity
 
-	int width, height, comp;
+	unsigned char *image; //Image pointer
 
-	unsigned int texture, VBO, VAO, EBO;
+	int width, height, comp; //Image dimentions
 
-	int vertexShader;
-	int fragmentShader;
+	unsigned int texture, VBO, VAO, EBO; //Buffers
 
-	unsigned int shaderProgram;
+	int vertexShader; //Vertex shader pointer
+	int fragmentShader; //Fragment shader pointer
+
+	unsigned int shaderProgram; //Dual shader program pointer
 
 };

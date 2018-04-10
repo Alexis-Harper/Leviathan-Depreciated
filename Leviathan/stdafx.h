@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#define _USE_MATH_DEFINES
 #include <cmath>
 #include <vector>
 
@@ -24,6 +25,7 @@
 #include "stb_image.h"
 
 //All Headers
+#include "Input.h"
 #include "Matrix.h"
 #include "Player.h"
 #include "Rectangle.h"

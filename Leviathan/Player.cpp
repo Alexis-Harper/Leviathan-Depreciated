@@ -133,6 +133,89 @@ Player::~Player() {
 
 }
 
+void Player::update() {
+
+	//Get direction; temp layout (saves resources and time)
+	bool upKey = inputObject.isKeyPressed(GLFW_KEY_UP);
+	bool rightKey = inputObject.isKeyPressed(GLFW_KEY_RIGHT);
+	bool downKey = inputObject.isKeyPressed(GLFW_KEY_DOWN);
+	bool leftKey = inputObject.isKeyPressed(GLFW_KEY_LEFT);
+
+	bool run = inputObject.isKeyPressed(GLFW_KEY_C); //Run button; temp layout
+
+	int eightDirection = inputObject.eightDirection(); //Joystick if necessary
+
+	//Tons of movement stuff (if certain moement, change graphics direction and velocity)
+	if ((upKey && rightKey && !downKey && !leftKey) || eightDirection == UP_RIGHT) {
+
+		direction = UP_RIGHT;
+
+		this->vX = 1 + run;
+		this->vY = 1 + run;
+
+	} else if ((upKey && !rightKey && !downKey && leftKey) || eightDirection == UP_LEFT) {
+
+		direction = UP_LEFT;
+
+		this->vX = -1 - run;
+		this->vY = 1 + run;
+
+	} else if ((upKey && !rightKey && !downKey && !leftKey) || eightDirection == UP) {
+
+		direction = UP;
+
+		this->vX = 0;
+		this->vY = 1 + run;
+
+	} else if ((!upKey && rightKey && !downKey && !leftKey) || eightDirection == RIGHT) {
+
+		direction = RIGHT;
+
+		this->vX = 1 + run;
+		this->vY = 0;
+
+	} else if ((!upKey && rightKey && downKey && !leftKey) || eightDirection == DOWN_RIGHT) {
+
+		direction = DOWN_RIGHT;
+
+		this->vX = 1 + run;
+		this->vY = -1 - run;
+
+	} else if ((!rightKey && !upKey && downKey && !leftKey) || eightDirection == DOWN_LEFT) {
+
+		direction = DOWN_LEFT;
+
+		this->vX = -1 - run;
+		this->vY = -1 - run;
+
+	} else if ((!rightKey && !upKey && downKey && !leftKey) || eightDirection == DOWN) {
+
+		direction = DOWN;
+
+		this->vX = 0;
+		this->vY = -1 - run;
+
+	} else if ((!rightKey && !upKey && !downKey && leftKey) || eightDirection == LEFT) {
+
+		direction = LEFT;
+
+		this->vX = -1 - run;
+		this->vY = 0;
+
+	} else {
+
+		this->vX = 0; //If no movement, keep direction facing sprite, but stop movement
+		this->vY = 0;
+
+	}
+
+	this->xPos += vX * inputObject.delta; //Change position by velocity times delta (the ratio of frames to timeframe)
+	this->yPos += vY * inputObject.delta;
+
+	this->hitbox.translate(vX, vY); //Translate hitbox
+
+}
+
 void Player::render() {
 
 	glBindTexture(GL_TEXTURE_2D, texture); //Bind texture on render
