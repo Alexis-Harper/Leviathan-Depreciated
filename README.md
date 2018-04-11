@@ -1,4 +1,5 @@
-# Leviathan
+Leviathan
+=======
 
 ## MAAAAAL
 
@@ -25,7 +26,7 @@ Alexis Harper
 Lane Leubbering
 
 **Special Thanks To:**
-//TODO
+George Mason University and NASA Goddard Space Flight Center (for your 1M digits of <img src="https://latex.codecogs.com/svg.latex?\sqrt{2}" title="Square Root of Two" />)
 
 **Special Screw You To:**
 Microsoft Visual Studio
