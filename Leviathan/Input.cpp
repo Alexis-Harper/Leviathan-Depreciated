@@ -24,7 +24,7 @@ bool Input::isKeyPressed(int keycode) {
 
 }
 
-int Input::eightDirection() {
+Direction Input::eightDirection() {
 
 	if (isControllerUsed) {
 
@@ -44,35 +44,35 @@ int Input::eightDirection() {
 
 			if (acos(x/sqrt(pow(x, 2) + pow(y, 2))) >= M_PI / 8) {
 
-				return 0; //Return UP
+				return UP; //Return UP
 
 			} else if (acos(((sqrt(2) * x) + (sqrt(2) * y))/ sqrt(pow(x, 2) + pow(y, 2))) >= M_PI / 8) {
 
-				return 1; //Return UP_RIGHT
+				return UP_RIGHT;
 
 			} else if (y / sqrt(pow(x, 2) + pow(y, 2))) {
 
-				return 2; //Return RIGHT
+				return RIGHT;
 
 			} else if (acos(((sqrt(2) * x) - (sqrt(2) * y)) / sqrt(pow(x, 2) + pow(y, 2))) >= M_PI / 8) {
 
-				return 3; //Return DOWN_RIGHT
+				return DOWN_RIGHT;
 
 			} else if (-1 * x / sqrt(pow(x, 2) + pow(y, 2))) {
 
-				return 7; //Return DOWN
+				return DOWN;
 
 			} else if (acos(((-1 * sqrt(2) * x) - (sqrt(2) * y)) / sqrt(pow(x, 2) + pow(y, 2))) >= M_PI / 8) {
 
-				return 4; //Return DOWN_LEFT
+				return DOWN_LEFT;
 
 			} else if (acos(((sqrt(2) * y) - (sqrt(2) * x)) / sqrt(pow(x, 2) + pow(y, 2))) >= M_PI / 8) {
 
-				return 5; //Return LEFT
+				return LEFT;
 
 			} else {
 
-				return 6; //Return UP_LEFT
+				return UP_LEFT;
 
 			}
 

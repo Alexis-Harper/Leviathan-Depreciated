@@ -4,13 +4,6 @@
 
 class Player {
 
-	//8 direction enum (for graphics)
-	enum Direction {
-
-		UP, UP_RIGHT, RIGHT, DOWN_RIGHT, DOWN_LEFT, LEFT, UP_LEFT, DOWN
-
-	} direction; //Create direction enum
-
 public:
 
 	Player();
@@ -25,6 +18,8 @@ private:
 
 	float xPos = 0, yPos = 0; //Position
 	float vX = 0, vY = 0; //Velocity
+
+	Direction direction; //Direction for graphics
 
 	unsigned char *image; //Image pointer
 
