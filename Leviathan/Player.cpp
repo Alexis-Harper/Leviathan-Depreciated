@@ -143,7 +143,7 @@ void Player::update() {
 
 	bool run = inputObject.isKeyPressed(GLFW_KEY_C); //Run button; temp layout
 
-	int eightDirection = inputObject.eightDirection(); //Joystick if necessary
+	int eightDirection = inputObject.eightDirection(0); //Joystick if necessary
 
 	//Tons of movement stuff (if certain moement, change graphics direction and velocity)
 	if ((upKey && rightKey && !downKey && !leftKey) || eightDirection == UP_RIGHT) {

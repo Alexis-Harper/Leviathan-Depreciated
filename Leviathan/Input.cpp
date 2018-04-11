@@ -24,19 +24,19 @@ bool Input::isKeyPressed(int keycode) {
 
 }
 
-Direction Input::eightDirection() {
+Direction Input::eightDirection(int arr) {
 
 	if (isControllerUsed) {
 
 		int count;
 		const float *joyArr = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &count);
 
-		float x = joyArr[0];
-		float y = joyArr[0];
+		float x = joyArr[arr];
+		float y = joyArr[arr];
 
-		if (pow(x, 2) + pow(x, 2) < 0.75) {
+		if (pow(x, 2) + pow(x, 2) < 1/8) {
 
-			return 8; //Always returns false in direction calculation if joystick is in middle
+			return NONE; //Always returns false in direction calculation if joystick is in middle
 
 		} else {
 
@@ -80,7 +80,7 @@ Direction Input::eightDirection() {
 
 	} else {
 
-		return 8; //Always returns false in direction calculation if joystick isn't connected
+		return NONE; //Always returns false in direction calculation if joystick isn't connected
 
 	}
 

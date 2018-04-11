@@ -15,7 +15,7 @@ public:
 
 	bool isKeyPressed(int); //Get bool data of if key is pressed
 
-	Direction eightDirection(); //Get all directions
+	Direction eightDirection(int); //Get all directions
 
 private:
 

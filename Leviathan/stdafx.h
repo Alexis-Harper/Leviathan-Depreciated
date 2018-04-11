@@ -31,7 +31,7 @@
 //8 direction enum
 enum Direction {
 
-	UP, UP_RIGHT, RIGHT, DOWN_RIGHT, DOWN_LEFT, LEFT, UP_LEFT, DOWN
+	UP, UP_RIGHT, RIGHT, DOWN_RIGHT, DOWN_LEFT, LEFT, UP_LEFT, DOWN, NONE
 
 };
 
