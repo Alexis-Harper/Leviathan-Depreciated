@@ -42,7 +42,7 @@ Direction Input::eightDirection(int arr) {
 
 			//Calculate which of the points it's between (this is complex stuff; I literrally had to use paper for this)
 
-			if (acos(x / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) {
+			if (acos(x / (sqrt(pow(x, 2) + pow(y, 2)))) >= M_PI / 8) {
 
 				return UP; //Return UP
 
@@ -50,7 +50,7 @@ Direction Input::eightDirection(int arr) {
 
 				return UP_RIGHT;
 
-			} else if (acos(y / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) {
+			} else if (acos(y / (sqrt(pow(x, 2) + pow(y, 2)))) >= M_PI / 8) {
 
 				return RIGHT;
 
@@ -58,7 +58,7 @@ Direction Input::eightDirection(int arr) {
 
 				return DOWN_RIGHT;
 
-			} else if (acos((0 -x) / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) {
+			} else if (acos((0 - x) / (sqrt(pow(x, 2) + pow(y, 2)))) >= M_PI / 8) {
 
 				return DOWN;
 
@@ -66,7 +66,7 @@ Direction Input::eightDirection(int arr) {
 
 				return DOWN_LEFT;
 
-			} else if (acos((y - x) / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) {
+			} else if (acos((0 - y) / (sqrt(pow(x, 2) + pow(y, 2)))) >= M_PI / 8) {
 
 				return LEFT;
 
