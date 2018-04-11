@@ -42,31 +42,31 @@ Direction Input::eightDirection(int arr) {
 
 			//Calculate which of the points it's between (this is complex stuff; I literrally had to use paper for this)
 
-			if (acos(x/sqrt(pow(x, 2) + pow(y, 2))) >= M_PI / 8) {
+			if (acos(x / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) {
 
 				return UP; //Return UP
 
-			} else if (acos(((sqrt(2) * x) + (sqrt(2) * y))/ sqrt(pow(x, 2) + pow(y, 2))) >= M_PI / 8) {
+			} else if (acos((x + y) / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) {
 
 				return UP_RIGHT;
 
-			} else if (y / sqrt(pow(x, 2) + pow(y, 2))) {
+			} else if (acos(y / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) {
 
 				return RIGHT;
 
-			} else if (acos(((sqrt(2) * x) - (sqrt(2) * y)) / sqrt(pow(x, 2) + pow(y, 2))) >= M_PI / 8) {
+			} else if (acos((x - y) / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) {
 
 				return DOWN_RIGHT;
 
-			} else if (-1 * x / sqrt(pow(x, 2) + pow(y, 2))) {
+			} else if (acos((0 -x) / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) {
 
 				return DOWN;
 
-			} else if (acos(((-1 * sqrt(2) * x) - (sqrt(2) * y)) / sqrt(pow(x, 2) + pow(y, 2))) >= M_PI / 8) {
+			} else if (acos(((0 - x) - y) / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) {
 
 				return DOWN_LEFT;
 
-			} else if (acos(((sqrt(2) * y) - (sqrt(2) * x)) / sqrt(pow(x, 2) + pow(y, 2))) >= M_PI / 8) {
+			} else if (acos((y - x) / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) {
 
 				return LEFT;
 
