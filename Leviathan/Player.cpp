@@ -150,15 +150,15 @@ void Player::update() {
 
 		direction = UP_RIGHT;
 
-		this->vX = 1 + run;
-		this->vY = 1 + run;
+		this->vX = sqrt(2) + (sqrt(2) * run);
+		this->vY = sqrt(2) + (sqrt(2) * run);
 
 	} else if ((upKey && !rightKey && !downKey && leftKey) || eightDirection == UP_LEFT) {
 
 		direction = UP_LEFT;
 
-		this->vX = -1 - run;
-		this->vY = 1 + run;
+		this->vX = (-1 * sqrt(2)) - (sqrt(2) * run);
+		this->vY = sqrt(2) + (sqrt(2) * run);
 
 	} else if ((upKey && !rightKey && !downKey && !leftKey) || eightDirection == UP) {
 
@@ -178,15 +178,15 @@ void Player::update() {
 
 		direction = DOWN_RIGHT;
 
-		this->vX = 1 + run;
-		this->vY = -1 - run;
+		this->vX = sqrt(2) + (sqrt(2) * run);
+		this->vY = (-1 * sqrt(2)) - (sqrt(2) * run);
 
 	} else if ((!rightKey && !upKey && downKey && !leftKey) || eightDirection == DOWN_LEFT) {
 
 		direction = DOWN_LEFT;
 
-		this->vX = -1 - run;
-		this->vY = -1 - run;
+		this->vX = (-1 * sqrt(2)) - (sqrt(2) * run);
+		this->vY = (-1 * sqrt(2)) - (sqrt(2) * run);
 
 	} else if ((!rightKey && !upKey && downKey && !leftKey) || eightDirection == DOWN) {
 

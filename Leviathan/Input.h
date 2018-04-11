@@ -2,6 +2,18 @@
 
 #include "stdafx.h"
 
+#ifndef DIRECTION_H
+#define DIRECTION_H
+
+//8 direction enum (for graphics)
+enum Direction {
+
+	UP, UP_RIGHT, RIGHT, DOWN_RIGHT, DOWN_LEFT, LEFT, UP_LEFT, DOWN
+
+}; //Create direction enum
+
+#endif
+
 class Input {
 
 public:
