@@ -2,19 +2,7 @@
 
 Rectangle::Rectangle() {
 
-	this->x = 0; //Initializing variables is important
-	this->y = 0;
-	this->width = 0;
-	this->height = 0;
-
-}
-
-Rectangle::Rectangle(float x, float y, float width, float height) {
-
-	this->x = x; //Set dimentions in necessary objects (efficency)
-	this->y = y;
-	this->width = width;
-	this->height = height;
+	//Default constructor
 
 }
 
@@ -26,7 +14,7 @@ Rectangle::~Rectangle() {
 
 bool Rectangle::rectIsColliding(Rectangle r1, Rectangle r2) {
 
-	//Complecated but standard rectangle collision algorithm
+	//Complecated but standard Rectangle collision algorithm
 	if (r1.x < r2.x + r2.width &&
 		r1.x + r1.width > r2.x &&
 		r1.y < r2.y + r2.height &&

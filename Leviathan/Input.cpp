@@ -7,8 +7,8 @@ Input::Input() {
 }
 
 Input::~Input() {
-
-	delete keyPressed;
+	
+	//Deconstructor
 
 }
 

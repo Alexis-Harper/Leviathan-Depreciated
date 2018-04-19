@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+using namespace std;
+
 constexpr std::chrono::nanoseconds timestep(16ms); //60 ticks per sec
 
 static double cursorPosX; //Mouse position X
@@ -172,7 +174,7 @@ int main() {
 
 		auto deltaTime = std::chrono::high_resolution_clock::now() - startTime; //Calculates delta (time since last frame)
 
-		inputObject.delta = std::chrono::duration_cast<std::chrono::nanoseconds>(deltaTime) / timestep;
+		inputObject.delta = (int)(std::chrono::duration_cast<std::chrono::nanoseconds>(deltaTime) / timestep);
 
 		//Limit FPS to 60 Hz
 		if (std::chrono::duration_cast<std::chrono::nanoseconds>(deltaTime) >= timestep) {

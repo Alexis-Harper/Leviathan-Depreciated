@@ -43,7 +43,7 @@ Player::Player() {
 
 	} catch (std::ifstream::failure e) {
 
-		cout << "[-] ifstream: Player shaders failed to load";
+		std::cout << "[-] ifstream: Player shaders failed to load";
 
 	}
 
@@ -109,7 +109,7 @@ Player::Player() {
 	//Check if image loaded
 	if (image == 0) {
 
-		cout << "[-] STBI: Player spritesheet failed to load";
+		std::cout << "[-] STBI: Player spritesheet failed to load";
 
 	} else {
 
@@ -150,62 +150,62 @@ void Player::update() {
 
 		direction = UP_RIGHT;
 
-		this->vX = 1.414213562373095048 + (1.414213562373095048 * run);
-		this->vY = 1.414213562373095048 + (1.414213562373095048 * run);
+		this->vX = (float)(1.414213562373095048 + (1.414213562373095048 * run));
+		this->vY = (float)(1.414213562373095048 + (1.414213562373095048 * run));
 
 	} else if ((upKey && !rightKey && !downKey && leftKey) || eightDirection == UP_LEFT) {
 
 		direction = UP_LEFT;
 
-		this->vX = -1.414213562373095048 - (1.414213562373095048 * run);
-		this->vY = 1.414213562373095048 + (1.414213562373095048 * run);
+		this->vX = (float)(-1.414213562373095048 - (1.414213562373095048 * run));
+		this->vY = (float)(1.414213562373095048 + (1.414213562373095048 * run));
 
 	} else if ((upKey && !rightKey && !downKey && !leftKey) || eightDirection == UP) {
 
 		direction = UP;
 
-		this->vX = 0;
-		this->vY = 1 + run;
+		this->vX = 0.0f;
+		this->vY = 1.0f + run;
 
 	} else if ((!upKey && rightKey && !downKey && !leftKey) || eightDirection == RIGHT) {
 
 		direction = RIGHT;
 
-		this->vX = 1 + run;
-		this->vY = 0;
+		this->vX = 1.0f + run;
+		this->vY = 0.0f;
 
 	} else if ((!upKey && rightKey && downKey && !leftKey) || eightDirection == DOWN_RIGHT) {
 
 		direction = DOWN_RIGHT;
 
-		this->vX = 1.41421356237309 + (1.41421356237309 * run);
-		this->vY = -1.41421356237309 - (1.41421356237309 * run);
+		this->vX = (float)(1.41421356237309 + (1.41421356237309 * run));
+		this->vY = (float)(-1.41421356237309 - (1.41421356237309 * run));
 
 	} else if ((!rightKey && !upKey && downKey && !leftKey) || eightDirection == DOWN_LEFT) {
 
 		direction = DOWN_LEFT;
 
-		this->vX = (-1.414213562373095048) - (1.414213562373095048 * run);
-		this->vY = (-1.414213562373095048) - (1.414213562373095048 * run);
+		this->vX = (float)((-1.414213562373095048) - (1.414213562373095048 * run));
+		this->vY = (float)((-1.414213562373095048) - (1.414213562373095048 * run));
 
 	} else if ((!rightKey && !upKey && downKey && !leftKey) || eightDirection == DOWN) {
 
 		direction = DOWN;
 
-		this->vX = 0;
-		this->vY = -1 - run;
+		this->vX = 0.0f;
+		this->vY = -1.0f - run;
 
 	} else if ((!rightKey && !upKey && !downKey && leftKey) || eightDirection == LEFT) {
 
 		direction = LEFT;
 
-		this->vX = -1 - run;
-		this->vY = 0;
+		this->vX = -1.0f - run;
+		this->vY = 0.0f;
 
 	} else {
 
-		this->vX = 0; //If no movement, keep direction facing sprite, but stop movement
-		this->vY = 0;
+		this->vX = 0.0f; //If no movement, keep direction facing sprite, but stop movement
+		this->vY = 0.0f;
 
 	}
 

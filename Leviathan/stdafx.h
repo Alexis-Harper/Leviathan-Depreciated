@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef STDAFX
+#define STDAFX
+
 #include <iostream>
 
 #define _USE_MATH_DEFINES
@@ -37,11 +40,6 @@ enum Direction {
 
 #endif
 
-//All Headers
 #include "Input.h"
-#include "Matrix.h"
-#include "Player.h"
-#include "Rectangle.h"
-#include "Vector.h"
 
-using namespace std;
+#endif

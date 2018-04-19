@@ -1,6 +1,11 @@
 #pragma once
 
+#ifndef PLAYER_H
+#define PLAYER_H
+
 #include "stdafx.h"
+
+#include "Rectangle.h"
 
 class Player {
 
@@ -33,3 +38,5 @@ private:
 	unsigned int shaderProgram; //Dual shader program pointer
 
 };
+
+#endif

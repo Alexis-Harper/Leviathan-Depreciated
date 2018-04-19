@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef VECTOR_H
+#define VECTOR_H
+
 #include "stdafx.h"
 
 class Vector {
@@ -36,3 +39,5 @@ private:
 	int size;
 
 };
+
+#endif

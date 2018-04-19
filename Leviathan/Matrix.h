@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef MATRIX_H
+#define MATRIX_H
+
 #include "stdafx.h"
 
 class Matrix {
@@ -38,3 +41,5 @@ private:
 	int size = 0;
 
 };
+
+#endif

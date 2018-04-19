@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef RECTANGLE_H
+#define RECTANGLE_H
+
 #include "stdafx.h"
 
 class Rectangle {
@@ -7,7 +10,6 @@ class Rectangle {
 public:
 
 	Rectangle();
-	Rectangle(float, float, float, float);
 	~Rectangle();
 
 	static bool rectIsColliding(Rectangle r1, Rectangle r2); 
@@ -39,3 +41,5 @@ private:
 	float height;
 
 };
+
+#endif
