@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+#include "Input.h"
+
 using namespace std;
 
 constexpr std::chrono::nanoseconds timestep(16ms); //60 ticks per sec

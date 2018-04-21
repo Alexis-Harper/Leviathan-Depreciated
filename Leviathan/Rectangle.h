@@ -3,8 +3,6 @@
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 
-#include "stdafx.h"
-
 class Rectangle {
 
 public:

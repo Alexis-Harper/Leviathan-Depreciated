@@ -3,7 +3,7 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-#include "stdafx.h"
+#include <vector>
 
 class Matrix {
 

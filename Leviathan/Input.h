@@ -3,8 +3,6 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-#include "stdafx.h"
-
 #include "Player.h"
 
 class Input {

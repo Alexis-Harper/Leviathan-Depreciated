@@ -1,4 +1,8 @@
+#include "stdafx.h"
+
 #include "Player.h"
+
+#include "Input.h"
 
 float vertecies[] = {
 

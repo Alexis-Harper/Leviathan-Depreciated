@@ -3,8 +3,6 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "stdafx.h"
-
 #include "Rectangle.h"
 
 class Player {
@@ -19,7 +17,7 @@ public:
 
 private:
 
-	Rectangle hitbox; //Hitbox object
+	Rectangle hitbox;
 
 	float xPos = 0, yPos = 0; //Position
 	float vX = 0, vY = 0; //Velocity

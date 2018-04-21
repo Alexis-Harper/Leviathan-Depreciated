@@ -40,6 +40,4 @@ enum Direction {
 
 #endif
 
-#include "Input.h"
-
 #endif

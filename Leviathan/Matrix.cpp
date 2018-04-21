@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include "Matrix.h"
 
 std::vector<float> x; //Dynamic 2xY matrix size
