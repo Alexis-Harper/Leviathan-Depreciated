@@ -3,6 +3,10 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <fstream>
+#include <sstream>
+
+#include "Input.h"
 #include "Rectangle.h"
 
 class Player {

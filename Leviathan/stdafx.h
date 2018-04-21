@@ -13,9 +13,6 @@
 
 #include <string>
 
-#include <fstream>
-#include <sstream>
-
 // GLEW
 #define GLEW_STATIC
 #include <GL\glew.h>

@@ -3,6 +3,8 @@
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 
+#include "Input.h"
+
 class Rectangle {
 
 public:
