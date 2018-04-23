@@ -15,14 +15,22 @@ public:
 	~Input();
 
 	void keyCallback(int, int); //Called on every key callback (transmits main.cpp callback data to inputObject)
+	void cursorCallback(float, float);
 
 	bool isKeyPressed(int); //Get bool data of if key is pressed
+
+	float getCursorX(); //Get position stuff
+	float getCursorY();
+	float* getCursorArray();
 
 	Direction eightDirection(int); //Get all directions
 
 private:
 
 	bool keyPressed[65536]; //Array containing every key's 'is pressed' status
+
+	double cursorPosX; //Mouse cursor position
+	double cursorPosY;
 
 	bool isControllerUsed;
 

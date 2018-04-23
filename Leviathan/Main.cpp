@@ -6,9 +6,6 @@ using namespace std;
 
 constexpr std::chrono::nanoseconds timestep(16ms); //60 ticks per sec
 
-static double cursorPosX; //Mouse position X
-static double cursorPosY; //Mouse position Y
-
 //Enum that keeps track of where in the game you are, because that's an important
 enum GameState {
 
@@ -229,7 +226,6 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 
 void mouse_pos_callback(GLFWwindow *window, double xpos, double ypos) {
 
-	cursorPosX = xpos; //Set cursor position variables to mouse position every frame the mouse moves
-	cursorPosY = ypos;
+	inputObject.cursorCallback(xpos, ypos);
 
 }

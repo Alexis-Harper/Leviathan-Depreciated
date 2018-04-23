@@ -14,15 +14,49 @@ Input::~Input() {
 
 }
 
+//Callbacks
+
 void Input::keyCallback(int key, int action) {
 
 	keyPressed[key] = action != GLFW_RELEASE;
 
 }
 
+void Input::cursorCallback(float x, float y) {
+
+	cursorPosX = x;
+	cursorPosY = y;
+
+}
+
+//Getters and Setters
+
 bool Input::isKeyPressed(int keycode) {
 
 	return keyPressed[keycode];
+
+}
+
+float Input::getCursorX() {
+
+	return cursorPosX;
+
+}
+
+float Input::getCursorY() {
+
+	return cursorPosY;
+
+}
+
+float* Input::getCursorArray() {
+
+	float returnArr[2]; //Array to return values in
+
+	returnArr[0] = cursorPosX; //Set array
+	returnArr[1] = cursorPosY;
+
+	return returnArr; //Return array
 
 }
 
