@@ -37,19 +37,19 @@ bool Input::isKeyPressed(int keycode) {
 
 }
 
-double Input::getCursorX() {
+float Input::getCursorX() {
 
 	return cursorPosX;
 
 }
 
-double Input::getCursorY() {
+float Input::getCursorY() {
 
 	return cursorPosY;
 
 }
 
-double* Input::getCursorArray() {
+float* Input::getCursorArray() {
 
 	float returnArr[2]; //Array to return values in
 
