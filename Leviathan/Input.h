@@ -15,13 +15,13 @@ public:
 	~Input();
 
 	void keyCallback(int, int); //Called on every key callback (transmits main.cpp callback data to inputObject)
-	void cursorCallback(float, float);
+	void cursorCallback(double, double);
 
 	bool isKeyPressed(int); //Get bool data of if key is pressed
 
-	float getCursorX(); //Get position stuff
-	float getCursorY();
-	float* getCursorArray();
+	double getCursorX(); //Get position stuff
+	double getCursorY();
+	void getCursorArray(double*);
 
 	Direction eightDirection(int); //Get all directions
 

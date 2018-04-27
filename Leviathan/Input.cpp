@@ -22,7 +22,7 @@ void Input::keyCallback(int key, int action) {
 
 }
 
-void Input::cursorCallback(float x, float y) {
+void Input::cursorCallback(double x, double y) {
 
 	cursorPosX = x;
 	cursorPosY = y;
@@ -37,26 +37,22 @@ bool Input::isKeyPressed(int keycode) {
 
 }
 
-float Input::getCursorX() {
+double Input::getCursorX() {
 
 	return cursorPosX;
 
 }
 
-float Input::getCursorY() {
+double Input::getCursorY() {
 
 	return cursorPosY;
 
 }
 
-float* Input::getCursorArray() {
+void Input::getCursorArray(double* arr) {
 
-	float returnArr[2]; //Array to return values in
-
-	returnArr[0] = cursorPosX; //Set array
-	returnArr[1] = cursorPosY;
-
-	return returnArr; //Return array
+	arr[0] = cursorPosX; //Set array
+	arr[1] = cursorPosY;
 
 }
 
