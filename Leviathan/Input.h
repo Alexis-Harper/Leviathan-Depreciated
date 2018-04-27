@@ -19,9 +19,9 @@ public:
 
 	bool isKeyPressed(int); //Get bool data of if key is pressed
 
-	float getCursorX(); //Get position stuff
-	float getCursorY();
-	float* getCursorArray();
+	double getCursorX(); //Get position stuff
+	double getCursorY();
+	double* getCursorArray();
 
 	Direction eightDirection(int); //Get all directions
 
