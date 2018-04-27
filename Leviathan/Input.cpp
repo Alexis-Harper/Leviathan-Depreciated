@@ -49,10 +49,14 @@ double Input::getCursorY() {
 
 }
 
-void Input::getCursorArray(double* arr) {
+double* Input::getCursorArray() {
+
+	static double arr[2];
 
 	arr[0] = cursorPosX; //Set array
 	arr[1] = cursorPosY;
+
+	return arr;
 
 }
 

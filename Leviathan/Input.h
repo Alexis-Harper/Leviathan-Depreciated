@@ -21,7 +21,7 @@ public:
 
 	double getCursorX(); //Get position stuff
 	double getCursorY();
-	void getCursorArray(double*);
+	double* getCursorArray();
 
 	Direction eightDirection(int); //Get all directions
 
