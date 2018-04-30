@@ -70,7 +70,7 @@ Direction Input::eightDirection(int arr) {
 		float x = joyArr[arr];
 		float y = joyArr[arr];
 
-		if (pow(x, 2) + pow(x, 2) < 1/8) {
+		if (pow(x, 2) + pow(y, 2) < 1/8) {
 
 			return NONE; //Always returns false in direction calculation if joystick is in middle
 
