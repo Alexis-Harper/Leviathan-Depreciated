@@ -24,6 +24,11 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
+//OpenAL
+#include <al.h>
+#include <alc.h>
+#include <alut.h>
+
 //Global enum (this is necessary)
 #ifndef DIRECTION_H
 #define DIRECTION_H

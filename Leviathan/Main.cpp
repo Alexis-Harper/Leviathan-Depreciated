@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "Input.h"
+#include "GameObject.h"
 
 using namespace std;
 
@@ -12,6 +13,14 @@ enum GameState {
 	MENU, GAME
 
 } state;
+
+//Stores all walls in an area
+vector<Rectangle> arenaUp;
+vector<Rectangle> arenaRight;
+vector<Rectangle> arenaDown;
+vector<Rectangle> arenaLeft;
+
+vector<GameObject> gameObjects; //Stores all enemies, bosses, etc.
 
 //GLFW Callbacks
 void framebuffer_size_callback(GLFWwindow*, int, int);
@@ -164,6 +173,16 @@ int main() {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); //Make pixelated textures look pixelated
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //Make it to where a picture smaller than the texture looks good
 
+	alutInitWithoutContext(NULL, NULL); //Initialize ALut
+
+	if (alGetError() != AL_NO_ERROR) {
+
+		cout << "[-] ALut: ALut failed to initialize";
+
+		return 1;
+
+	}
+
 	//Player player;
 
 	auto startTime = std::chrono::high_resolution_clock::now(); //Get time right after initialization (initial time before first start time reset later on)
@@ -205,6 +224,8 @@ int main() {
 	glfwDestroyWindow(window); //Destroy window
 
 	glfwTerminate(); //Close GLFW
+
+	alutExit(); //Close ALut
 
 	return 0;
 
