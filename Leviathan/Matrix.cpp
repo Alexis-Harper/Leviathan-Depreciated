@@ -25,30 +25,27 @@ Matrix::Matrix(int num) {
 
 Matrix::Matrix(std::vector<float> x, std::vector<float> y) {
 
-	int xSize = x.size(); //This prevents errors ans speeds up the program
-	int ySize = y.size();
-
 	std::vector<float> tempX = x;
 	std::vector<float> tempY = y;
 
 	//Check if two vectors are the same size
-	if (xSize > ySize) {
+	if (x.size > y.size) {
 
-		tempY.resize(xSize); //Make sure y is the right size
+		tempY.resize(x.size); //Make sure y is the right size
 
-		for (int i = ySize; i < xSize; i++) {
+		for (int i = y.size; i < x.size; i++) {
 
 			tempY[i] = 0;
 
 		}
 
-	} else if (ySize > xSize) {
+	} else if (y.size > x.size) {
 
-		xSize = ySize;
+		x.size = y.size;
 
-		tempX.resize(ySize); //Make sure that x is the right size
+		tempX.resize(y.size); //Make sure that x is the right size
 
-		for (int i = xSize; i < ySize; i++) {
+		for (int i = x.size; i < y.size; i++) {
 
 			tempX[0] = 0;
 
@@ -56,7 +53,7 @@ Matrix::Matrix(std::vector<float> x, std::vector<float> y) {
 
 	}
 
-	this->size = xSize; //Size it to the correct size
+	this->size = x.size; //Size it to the correct size
 
 	this->x.resize(this->size); //Resize
 	this->y.resize(this->size);

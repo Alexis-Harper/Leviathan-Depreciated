@@ -19,9 +19,13 @@ public:
 	void update(); //Run on every tick (physics, motion, etc.)
 	void render(); //Run on every render (graphics, image, etc.)
 
+	void move(bool, bool, bool, bool);
+	
+	Rectangle hitbox;
+
 private:
 
-	Rectangle hitbox;
+	bool canMove[4];
 
 	float xPos = 0, yPos = 0; //Position
 	float vX = 0, vY = 0; //Velocity

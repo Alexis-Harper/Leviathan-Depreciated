@@ -183,7 +183,7 @@ int main() {
 
 	}
 
-	//Player player;
+	Player player;
 
 	auto startTime = std::chrono::high_resolution_clock::now(); //Get time right after initialization (initial time before first start time reset later on)
 
@@ -206,6 +206,68 @@ int main() {
 			//Get inputs
 
 			//Update physics
+
+			bool canMove[4]; //This helps keep track of player with walls
+
+			//Can move
+			canMove[0] = true;
+			canMove[1] = true;
+			canMove[2] = true;
+			canMove[3] = true;
+
+			//Should player be able to go up
+			for (int i = 0; i < arenaUp.size; i++) {
+
+				if (Rectangle::rectIsColliding(player.hitbox, arenaUp[i])) {
+
+					canMove[0] = false;
+
+					break;
+
+				}
+
+			}
+
+			//Should player be able to go right
+			for (int i = 0; i < arenaRight.size; i++) {
+
+				if (Rectangle::rectIsColliding(player.hitbox, arenaRight[i])) {
+
+					canMove[1] = false;
+
+					break;
+
+				}
+
+			}
+
+			//Should player be able to go down
+			for (int i = 0; i < arenaDown.size; i++) {
+
+				if (Rectangle::rectIsColliding(player.hitbox, arenaDown[i])) {
+
+					canMove[2] = false;
+
+					break;
+
+				}
+
+			}
+
+			//Should player be able to go left
+			for (int i = 0; i < arenaLeft.size; i++) {
+
+				if (Rectangle::rectIsColliding(player.hitbox, arenaDown[i])) {
+
+					canMove[3] = false;
+
+					break;
+
+				}
+
+			}
+
+			player.move(canMove[0], canMove[1], canMove[2], canMove[3]); //Let movement work
 
 			//Update graphics
 

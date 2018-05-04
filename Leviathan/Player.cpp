@@ -22,6 +22,7 @@ unsigned int indecies[] {
 
 Player::Player() {
 
+	/*
 	glGenTextures(1, &texture); //Generate OpenGL texture ID
 	glBindTexture(GL_TEXTURE_2D, texture); //Bind ID to GL_TEXTURE_2D
 
@@ -68,6 +69,7 @@ Player::Player() {
 
 	} //*/
 
+	/*
 	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER); //Create shader ID
 	glShaderSource(fragmentShader, 1, &fChar, NULL); //Add source
 	glCompileShader(fragmentShader); //Compile shader
@@ -82,6 +84,7 @@ Player::Player() {
 
 	} //*/
 
+	/*
 	shaderProgram = glCreateProgram(); //Create shader program
 
 	glAttachShader(shaderProgram, vertexShader); //Attach two shaders to program
@@ -120,8 +123,8 @@ Player::Player() {
 
 		stbi_image_free(image); //Clear up space
 
-	}
-	
+	} //*/
+
 }
 
 Player::~Player() {
@@ -152,56 +155,56 @@ void Player::update() {
 
 		direction = UP_RIGHT;
 
-		this->vX = (float)(1.414213562373095048 + (1.414213562373095048 * run));
-		this->vY = (float)(1.414213562373095048 + (1.414213562373095048 * run));
+		this->vX = (float)(1.414213562373095048 + (1.414213562373095048 * run)) * canMove[1];
+		this->vY = (float)(1.414213562373095048 + (1.414213562373095048 * run)) * canMove[0];
 
 	} else if ((upKey && !rightKey && !downKey && leftKey) || eightDirection == UP_LEFT) {
 
 		direction = UP_LEFT;
 
-		this->vX = (float)(-1.414213562373095048 - (1.414213562373095048 * run));
-		this->vY = (float)(1.414213562373095048 + (1.414213562373095048 * run));
+		this->vX = (float)(-1.414213562373095048 - (1.414213562373095048 * run)) * canMove[3];
+		this->vY = (float)(1.414213562373095048 + (1.414213562373095048 * run)) * canMove[0];
 
 	} else if ((upKey && !rightKey && !downKey && !leftKey) || eightDirection == UP) {
 
 		direction = UP;
 
 		this->vX = 0.0f;
-		this->vY = 1.0f + run;
+		this->vY = (1.0f + run) * canMove[0];
 
 	} else if ((!upKey && rightKey && !downKey && !leftKey) || eightDirection == RIGHT) {
 
 		direction = RIGHT;
 
-		this->vX = 1.0f + run;
+		this->vX = (1.0f + run) * canMove[1];
 		this->vY = 0.0f;
 
 	} else if ((!upKey && rightKey && downKey && !leftKey) || eightDirection == DOWN_RIGHT) {
 
 		direction = DOWN_RIGHT;
 
-		this->vX = (float)(1.41421356237309 + (1.41421356237309 * run));
-		this->vY = (float)(-1.41421356237309 - (1.41421356237309 * run));
+		this->vX = (float)(1.41421356237309 + (1.41421356237309 * run)) * canMove[1];
+		this->vY = (float)(-1.41421356237309 - (1.41421356237309 * run)) * canMove[2];
 
 	} else if ((!rightKey && !upKey && downKey && !leftKey) || eightDirection == DOWN_LEFT) {
 
 		direction = DOWN_LEFT;
 
-		this->vX = (float)((-1.414213562373095048) - (1.414213562373095048 * run));
-		this->vY = (float)((-1.414213562373095048) - (1.414213562373095048 * run));
+		this->vX = (float)((-1.414213562373095048) - (1.414213562373095048 * run)) * canMove[3];
+		this->vY = (float)((-1.414213562373095048) - (1.414213562373095048 * run)) * canMove[2];
 
 	} else if ((!rightKey && !upKey && downKey && !leftKey) || eightDirection == DOWN) {
 
 		direction = DOWN;
 
 		this->vX = 0.0f;
-		this->vY = -1.0f - run;
+		this->vY = (-1.0f - run) * canMove[2];
 
 	} else if ((!rightKey && !upKey && !downKey && leftKey) || eightDirection == LEFT) {
 
 		direction = LEFT;
 
-		this->vX = -1.0f - run;
+		this->vX = (-1.0f - run) * canMove[3];
 		this->vY = 0.0f;
 
 	} else {
@@ -227,5 +230,14 @@ void Player::render() {
 	glBindVertexArray(VAO); //Bind player buffers
 
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0); //Render player
+
+}
+
+void Player::move(bool up, bool right, bool down, bool left) {
+
+	this->canMove[0] = up;
+	this->canMove[1] = right;
+	this->canMove[2] = down;
+	this->canMove[3] = left;
 
 }
