@@ -19,6 +19,9 @@ public:
 	void update(); //Run on every tick (physics, motion, etc.)
 	void render(); //Run on every render (graphics, image, etc.)
 
+	void damagePhy(int); //Physical attack
+	void damageMag(int); //Magic attack
+
 	void move(bool, bool, bool, bool);
 	
 	Rectangle hitbox;
@@ -26,6 +29,17 @@ public:
 private:
 
 	bool canMove[4];
+
+	int hp = 100;
+	int hpMax = 100;
+	int mp = 10;
+	int mpMax = 10;
+	int attack;
+	int magic;
+	int range = 1;
+	int defence = 1;
+	int resistance = 1;
+	int speed = 1;
 
 	float xPos = 0, yPos = 0; //Position
 	float vX = 0, vY = 0; //Velocity
@@ -42,6 +56,8 @@ private:
 	int fragmentShader; //Fragment shader pointer
 
 	unsigned int shaderProgram; //Dual shader program pointer
+
+	ALuint hurtSoundPhy, hurtSoundMag, deathSound, playerSource;
 
 };
 

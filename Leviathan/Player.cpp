@@ -125,16 +125,74 @@ Player::Player() {
 
 	} //*/
 
+	/*
+	hurtSoundPhy = alutCreateBufferFromFile("assets/sound/effects/player/hurtPhy.wav");
+	hurtSoundMag = alutCreateBufferFromFile("assets/sound/effects/player/hurtMag.wav");
+	deathSound = alutCreateBufferFromFile("assets/sound/effects/player/death.wav");
+
+	alGenSources(1, &playerSource);
+	//*/
+
 }
 
 Player::~Player() {
 
+	/*
 	glDeleteShader(vertexShader); //Delete shaders
 	glDeleteShader(fragmentShader);
 
 	glDeleteVertexArrays(1, &VAO); //Delete buffers
 	glDeleteBuffers(1, &VBO);
 	glDeleteBuffers(1, &EBO);
+	*/
+
+}
+
+void Player::damagePhy(int attack) {
+
+	int health = attack / this->defence; //How much health is taken
+
+	if (health >= hp) {
+
+		//Die
+
+		alSourcei(playerSource, AL_BUFFER, deathSound);
+		alSourcePlay(playerSource);
+
+	} else {
+
+		//Take damage
+
+		alSourcei(playerSource, AL_BUFFER, hurtSoundPhy);
+		alSourcePlay(playerSource);
+
+		hp -= health;
+
+	}
+
+}
+
+void Player::damageMag(int magic) {
+
+	int health = magic / this->resistance; //How much health is taken
+
+	if (health >= hp) {
+
+		//Die
+
+		alSourcei(playerSource, AL_BUFFER, deathSound);
+		alSourcePlay(playerSource);
+
+	} else {
+
+		//Take damage
+
+		alSourcei(playerSource, AL_BUFFER, hurtSoundMag);
+		alSourcePlay(playerSource);
+
+		hp -= health;
+
+	}
 
 }
 
@@ -155,56 +213,56 @@ void Player::update() {
 
 		direction = UP_RIGHT;
 
-		this->vX = (float)(1.414213562373095048 + (1.414213562373095048 * run)) * canMove[1];
-		this->vY = (float)(1.414213562373095048 + (1.414213562373095048 * run)) * canMove[0];
+		this->vX = (float)(1.414213562373095048 + (1.414213562373095048 * run)) * canMove[1] * this->speed;
+		this->vY = (float)(1.414213562373095048 + (1.414213562373095048 * run)) * canMove[0] * this->speed;
 
 	} else if ((upKey && !rightKey && !downKey && leftKey) || eightDirection == UP_LEFT) {
 
 		direction = UP_LEFT;
 
-		this->vX = (float)(-1.414213562373095048 - (1.414213562373095048 * run)) * canMove[3];
-		this->vY = (float)(1.414213562373095048 + (1.414213562373095048 * run)) * canMove[0];
+		this->vX = (float)(-1.414213562373095048 - (1.414213562373095048 * run)) * canMove[3] * this->speed;
+		this->vY = (float)(1.414213562373095048 + (1.414213562373095048 * run)) * canMove[0] * this->speed;
 
 	} else if ((upKey && !rightKey && !downKey && !leftKey) || eightDirection == UP) {
 
 		direction = UP;
 
 		this->vX = 0.0f;
-		this->vY = (1.0f + run) * canMove[0];
+		this->vY = (1.0f + run) * canMove[0] * this->speed;
 
 	} else if ((!upKey && rightKey && !downKey && !leftKey) || eightDirection == RIGHT) {
 
 		direction = RIGHT;
 
-		this->vX = (1.0f + run) * canMove[1];
+		this->vX = (1.0f + run) * canMove[1] * this->speed;
 		this->vY = 0.0f;
 
 	} else if ((!upKey && rightKey && downKey && !leftKey) || eightDirection == DOWN_RIGHT) {
 
 		direction = DOWN_RIGHT;
 
-		this->vX = (float)(1.41421356237309 + (1.41421356237309 * run)) * canMove[1];
-		this->vY = (float)(-1.41421356237309 - (1.41421356237309 * run)) * canMove[2];
+		this->vX = (float)(1.41421356237309 + (1.41421356237309 * run)) * canMove[1] * this->speed;
+		this->vY = (float)(-1.41421356237309 - (1.41421356237309 * run)) * canMove[2] * this->speed;
 
 	} else if ((!rightKey && !upKey && downKey && !leftKey) || eightDirection == DOWN_LEFT) {
 
 		direction = DOWN_LEFT;
 
-		this->vX = (float)((-1.414213562373095048) - (1.414213562373095048 * run)) * canMove[3];
-		this->vY = (float)((-1.414213562373095048) - (1.414213562373095048 * run)) * canMove[2];
+		this->vX = (float)((-1.414213562373095048) - (1.414213562373095048 * run)) * canMove[3] * this->speed;
+		this->vY = (float)((-1.414213562373095048) - (1.414213562373095048 * run)) * canMove[2] * this->speed;
 
 	} else if ((!rightKey && !upKey && downKey && !leftKey) || eightDirection == DOWN) {
 
 		direction = DOWN;
 
 		this->vX = 0.0f;
-		this->vY = (-1.0f - run) * canMove[2];
+		this->vY = (-1.0f - run) * canMove[2] * this->speed;
 
 	} else if ((!rightKey && !upKey && !downKey && leftKey) || eightDirection == LEFT) {
 
 		direction = LEFT;
 
-		this->vX = (-1.0f - run) * canMove[3];
+		this->vX = (-1.0f - run) * canMove[3] * this->speed;
 		this->vY = 0.0f;
 
 	} else {
