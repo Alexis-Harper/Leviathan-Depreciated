@@ -38,9 +38,44 @@ Audio::~Audio() {
 
 }
 
-void Audio::changeMusic(char* file) {
+void Audio::render() {
+
+	if (v) {
+
+		if (p[1] == 30.0f) {
+
+			v = false; //Reset position data
+			p[1] = 0.0f;
+
+			stopMusic();
+			
+		} else {
+
+			p[1] += (float)(1.0f * inputObject.delta);
+
+		}
+		
+		alGetSourcefv(musicSource, AL_POSITION, p);
+
+	}
+
+}
+
+void Audio::stopMusic() {
+
+	alSourceStop(musicSource); //Stop the source
 
 	alDeleteBuffers(1, &musicBuffer); //Delete existing buffer
+
+}
+
+void Audio::fadeOut() {
+
+	v = true;
+
+}
+
+void Audio::changeMusic(char* file) {
 
 	musicBuffer = alutCreateBufferFromFile(file); //Create new buffer
 

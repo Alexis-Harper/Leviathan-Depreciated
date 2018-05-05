@@ -1,5 +1,6 @@
 #include "stdafx.h"
 
+#include "Audio.h"
 #include "Input.h"
 #include "GameObject.h"
 
@@ -214,9 +215,11 @@ int main() {
 			canMove[1] = true;
 			canMove[2] = true;
 			canMove[3] = true;
+			
+			int temp = arenaUp.size(); //Speeds up and prevents errors
 
 			//Should player be able to go up
-			for (int i = 0; i < arenaUp.size; i++) {
+			for (int i = 0; i < temp; i++) {
 
 				if (Rectangle::rectIsColliding(player.hitbox, arenaUp[i])) {
 
@@ -228,8 +231,10 @@ int main() {
 
 			}
 
+			temp = arenaRight.size();
+
 			//Should player be able to go right
-			for (int i = 0; i < arenaRight.size; i++) {
+			for (int i = 0; i < temp; i++) {
 
 				if (Rectangle::rectIsColliding(player.hitbox, arenaRight[i])) {
 
@@ -241,8 +246,10 @@ int main() {
 
 			}
 
+			temp = arenaDown.size();
+
 			//Should player be able to go down
-			for (int i = 0; i < arenaDown.size; i++) {
+			for (int i = 0; i < temp; i++) {
 
 				if (Rectangle::rectIsColliding(player.hitbox, arenaDown[i])) {
 
@@ -254,8 +261,10 @@ int main() {
 
 			}
 
+			temp = arenaLeft.size();
+
 			//Should player be able to go left
-			for (int i = 0; i < arenaLeft.size; i++) {
+			for (int i = 0; i < temp; i++) {
 
 				if (Rectangle::rectIsColliding(player.hitbox, arenaDown[i])) {
 
@@ -272,6 +281,8 @@ int main() {
 			//Update graphics
 
 			//player.render();
+
+			audioObject.render();
 
 			glClearColor(0.0f, 0.0f, 0.0f, 1.0f); //Black background (like ALttP)
 

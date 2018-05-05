@@ -25,27 +25,30 @@ Matrix::Matrix(int num) {
 
 Matrix::Matrix(std::vector<float> x, std::vector<float> y) {
 
+	int xSize = x.size();
+	int ySize = y.size();
+
 	std::vector<float> tempX = x;
 	std::vector<float> tempY = y;
 
 	//Check if two vectors are the same size
-	if (x.size > y.size) {
+	if (xSize > ySize) {
 
-		tempY.resize(x.size); //Make sure y is the right size
+		tempY.resize(xSize); //Make sure y is the right size
 
-		for (int i = y.size; i < x.size; i++) {
+		for (int i = ySize; i < xSize; i++) {
 
 			tempY[i] = 0;
 
 		}
 
-	} else if (y.size > x.size) {
+	} else if (ySize > xSize) {
 
-		x.size = y.size;
+		xSize = ySize;
 
-		tempX.resize(y.size); //Make sure that x is the right size
+		tempX.resize(ySize); //Make sure that x is the right size
 
-		for (int i = x.size; i < y.size; i++) {
+		for (int i = xSize; i < ySize; i++) {
 
 			tempX[0] = 0;
 
@@ -53,7 +56,7 @@ Matrix::Matrix(std::vector<float> x, std::vector<float> y) {
 
 	}
 
-	this->size = x.size; //Size it to the correct size
+	this->size = xSize; //Size it to the correct size
 
 	this->x.resize(this->size); //Resize
 	this->y.resize(this->size);
@@ -129,16 +132,18 @@ void Matrix::setY(int adress, float value) {
 
 void Matrix::setX(std::vector<float> x) {
 
-	if (x.size() == this->size) {
+	int xSize = x.size();
+
+	if (xSize == this->size) {
 
 		this->x = x; //If the vector is the same size as before, just add it
 
 	} else {
 
-		this->size = x.size(); //Resize vector if necessary to make room or clean (mem adress for faster running)
+		this->size = xSize; //Resize vector if necessary to make room or clean (mem adress for faster running)
 
-		this->x.resize(x.size()); //Resize
-		this->y.resize(x.size());
+		this->x.resize(xSize); //Resize
+		this->y.resize(xSize);
 
 		this->x = x; //Add it
 
@@ -148,16 +153,18 @@ void Matrix::setX(std::vector<float> x) {
 
 void Matrix::setY(std::vector<float> y) {
 
-	if (x.size() == this->size) {
+	int ySize = y.size();
+
+	if (ySize == this->size) {
 
 		this->y = y; //If the vector is the same size as before, just add it
 
 	} else {
 
-		this->size = x.size(); //Resize vector if necessary to make room or clean (mem adress for faster running)
+		this->size = ySize; //Resize vector if necessary to make room or clean (mem adress for faster running)
 
-		this->x.resize(x.size()); //Resize
-		this->y.resize(x.size());
+		this->x.resize(ySize); //Resize
+		this->y.resize(ySize);
 
 		this->y = y; //Add it
 

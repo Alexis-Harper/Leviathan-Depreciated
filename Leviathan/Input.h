@@ -9,7 +9,7 @@ class Input {
 
 public:
 
-	int delta; //Time ratio (delta)
+	double delta; //Time ratio (delta)
 
 	Input();
 	~Input();
