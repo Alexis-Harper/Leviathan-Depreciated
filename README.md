@@ -26,7 +26,7 @@ Alexis Harper
 Lane Leubbering
 
 **Special Thanks To:**
-George Mason University and NASA Goddard Space Flight Center (for your 1M digits of <img src="https://latex.codecogs.com/svg.latex?\sqrt{2}" title="Square Root of Two" />), OpenGL team, GLFW team, & OpenAL team
+George Mason University and NASA Goddard Space Flight Center (for your 1M digits of <img src="https://latex.codecogs.com/svg.latex?\sqrt{2}" title="Square Root of Two" />), OpenGL team, GLFW team, stb_image.h guy (Sean Barrett), & OpenAL team
 
 **Special Screw You To:**
 Microsoft Visual Studio
