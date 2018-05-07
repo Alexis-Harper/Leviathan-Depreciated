@@ -29,33 +29,31 @@ Audio::Audio() {
 	alGenSources(1, &musicSource);
 	alSourcei(musicSource, AL_BUFFER, musicBuffer);
 
+	alSourcei(musicSource, AL_LOOPING, 1); //Turn on looping by default
+
 }
 
 Audio::~Audio() {
 
-	alDeleteBuffers(1, &musicBuffer);
+	alDeleteBuffers(1, &musicBuffer); //Delete buffers (important for memory)
 	alDeleteSources(1, &musicSource);
+
+	delete this->nextSong; //It's dynamic memory. This is 100% neccessary
 
 }
 
 void Audio::render() {
 
-	if (v) {
+	ALint state; //Stores music state
 
-		if (p[1] == 30.0f) {
+	alGetSourcei(musicSource, AL_SOURCE_STATE, &state); //Gets music state
 
-			v = false; //Reset position data
-			p[1] = 0.0f;
+	//If song is over and playNext is on
+	if (state != AL_PLAYING && this->playNext) {
 
-			stopMusic();
-			
-		} else {
+		this->changeMusic(this->nextSong); //Change to next song
 
-			p[1] += (float)(1.0f * inputObject.delta);
-
-		}
-		
-		alGetSourcefv(musicSource, AL_POSITION, p);
+		this->playNext = false; //Turn off playNext
 
 	}
 
@@ -69,9 +67,18 @@ void Audio::stopMusic() {
 
 }
 
-void Audio::fadeOut() {
+void Audio::replaceEnding(char* buf) {
 
-	v = true;
+	//Stop looping
+	this->repeatMusic = false;
+	alSourcei(musicSource, AL_LOOPING, 0);
+
+	this->playNext = true; //Turn on playNext
+
+	int len = strlen(buf); //Get length of buffer
+
+	this->nextSong = new char[len]; //Dynamic memory FTW
+	this->nextSong = buf; //Put buffer in next song name buffer
 
 }
 
@@ -80,5 +87,27 @@ void Audio::changeMusic(char* file) {
 	musicBuffer = alutCreateBufferFromFile(file); //Create new buffer
 
 	alSourcei(musicSource, AL_BUFFER, musicBuffer); //Link buffer
+
+}
+
+bool Audio::getRepeatMusic() {
+
+	return this->repeatMusic;
+
+}
+
+void Audio::setRepeatMusic(bool value) {
+
+	this->repeatMusic = value;
+
+	alSourcei(musicSource, AL_LOOPING, value);
+
+}
+
+void Audio::toggleRepeatMusic() {
+
+	this->repeatMusic = !this->repeatMusic;
+
+	alSourcei(musicSource, AL_LOOPING, this->repeatMusic);
 
 }

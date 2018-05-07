@@ -14,13 +14,18 @@ public:
 	void render();
 
 	void stopMusic();
-	void fadeOut();
+	void replaceEnding(char*);
 	void changeMusic(char*);
+
+	bool getRepeatMusic();
+	void setRepeatMusic(bool);
+	void toggleRepeatMusic();
 
 private:
 
-	//Fade out
-	float p[3] = { 0.0f, 0.0f, 0.0f };
-	bool v;
+	bool repeatMusic = true; //Keep track of weather music repeats
+
+	bool playNext = false;
+	char* nextSong = new char[255];
 
 } audioObject;
