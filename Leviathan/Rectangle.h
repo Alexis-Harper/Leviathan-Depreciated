@@ -10,6 +10,7 @@ class Rectangle {
 public:
 
 	Rectangle();
+	Rectangle(float, float, float, float);
 	~Rectangle();
 
 	static bool rectIsColliding(Rectangle r1, Rectangle r2); 

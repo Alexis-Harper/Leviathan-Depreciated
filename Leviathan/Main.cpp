@@ -1,5 +1,6 @@
 #include "stdafx.h"
 
+#include "Arena.h"
 #include "Audio.h"
 #include "Input.h"
 #include "GameObject.h"
@@ -15,13 +16,7 @@ enum GameState {
 
 } state;
 
-//Stores all walls in an area
-vector<Rectangle> arenaUp;
-vector<Rectangle> arenaRight;
-vector<Rectangle> arenaDown;
-vector<Rectangle> arenaLeft;
-
-vector<GameObject> gameObjects; //Stores all enemies, bosses, etc.
+Arena* arenaObject = new Arena(); //Dynamic arenaObject that can be changed a lot
 
 //GLFW Callbacks
 void framebuffer_size_callback(GLFWwindow*, int, int);
@@ -216,12 +211,12 @@ int main() {
 			canMove[2] = true;
 			canMove[3] = true;
 			
-			int temp = arenaUp.size(); //Speeds up and prevents errors
+			int temp = arenaObject->arenaUp.size(); //Speeds up and prevents errors
 
 			//Should player be able to go up
 			for (int i = 0; i < temp; i++) {
 
-				if (Rectangle::rectIsColliding(player.hitbox, arenaUp[i])) {
+				if (Rectangle::rectIsColliding(player.hitbox, arenaObject->arenaUp[i])) {
 
 					canMove[0] = false;
 
@@ -231,12 +226,12 @@ int main() {
 
 			}
 
-			temp = arenaRight.size();
+			temp = arenaObject->arenaRight.size();
 
 			//Should player be able to go right
 			for (int i = 0; i < temp; i++) {
 
-				if (Rectangle::rectIsColliding(player.hitbox, arenaRight[i])) {
+				if (Rectangle::rectIsColliding(player.hitbox, arenaObject->arenaRight[i])) {
 
 					canMove[1] = false;
 
@@ -246,12 +241,12 @@ int main() {
 
 			}
 
-			temp = arenaDown.size();
+			temp = arenaObject->arenaDown.size();
 
 			//Should player be able to go down
 			for (int i = 0; i < temp; i++) {
 
-				if (Rectangle::rectIsColliding(player.hitbox, arenaDown[i])) {
+				if (Rectangle::rectIsColliding(player.hitbox, arenaObject->arenaDown[i])) {
 
 					canMove[2] = false;
 
@@ -261,12 +256,12 @@ int main() {
 
 			}
 
-			temp = arenaLeft.size();
+			temp = arenaObject->arenaLeft.size();
 
 			//Should player be able to go left
 			for (int i = 0; i < temp; i++) {
 
-				if (Rectangle::rectIsColliding(player.hitbox, arenaDown[i])) {
+				if (Rectangle::rectIsColliding(player.hitbox, arenaObject->arenaDown[i])) {
 
 					canMove[3] = false;
 
@@ -293,6 +288,9 @@ int main() {
 		}
 
 	}
+
+	//Delete all necessary things (heap objects)
+	delete arenaObject; 
 
 	glfwDestroyWindow(window); //Destroy window
 
