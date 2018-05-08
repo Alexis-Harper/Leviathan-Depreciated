@@ -198,8 +198,8 @@ int main() {
 			startTime = std::chrono::high_resolution_clock::now(); //Reset time every frame (necessary for propper timing)
 
 			glfwPollEvents(); //Checks for events such as glfwWindowShouldClose() or controller input (including callbacks)
-			
-			//Get inputs
+
+			int temp;
 
 			//Update physics
 
@@ -211,7 +211,7 @@ int main() {
 			canMove[2] = true;
 			canMove[3] = true;
 			
-			int temp = arenaObject->arenaUp.size(); //Speeds up and prevents errors
+			temp = arenaObject->arenaUp.size(); //Speeds up and prevents errors
 
 			//Should player be able to go up
 			for (int i = 0; i < temp; i++) {
@@ -273,11 +273,27 @@ int main() {
 
 			player.move(canMove[0], canMove[1], canMove[2], canMove[3]); //Let movement work
 
+			temp = arenaObject->gameObjects.size(); //Saves time and errors
+
+			//Update all Game Objects
+			for (int i = 0; i < temp; i++) {
+
+				arenaObject->gameObjects[i].update();
+
+			}
+
 			//Update graphics
 
-			//player.render();
+			//Render all Game Objects
+			for (int i = 0; i < temp; i++) {
 
-			audioObject.render();
+				arenaObject->gameObjects[i].render();
+
+			}
+
+			//player.render(); //Render player
+
+			audioObject.render(); //Render audio
 
 			glClearColor(0.0f, 0.0f, 0.0f, 1.0f); //Black background (like ALttP)
 

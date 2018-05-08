@@ -20,9 +20,11 @@ public:
 	void render(); //Run on every render (graphics, image, etc.)
 
 	void damagePhy(int); //Physical attack
-	void damageMag(int); //Magic attack
 
 	void move(bool, bool, bool, bool);
+
+	void setStats(int, int, int, int, int, int, int, int);
+	void setPosition(float, float);
 	
 	Rectangle hitbox;
 
@@ -30,19 +32,17 @@ private:
 
 	bool canMove[4];
 
-	int hp = 100;
-	int hpMax = 100;
-	int mp = 10;
-	int mpMax = 10;
+	int hp;
+	int hpMax;
+	int ammo;
+	int ammoMax;
 	int attack;
-	int magic;
-	int range = 1;
-	int defence = 1;
-	int resistance = 1;
-	int speed = 1;
+	int range;
+	int defence;
+	int speed;
 
-	float xPos = 0, yPos = 0; //Position
-	float vX = 0, vY = 0; //Velocity
+	float xPos, yPos; //Position
+	float vX, vY; //Velocity
 
 	Direction direction; //Direction for graphics
 

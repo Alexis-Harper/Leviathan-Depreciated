@@ -11,13 +11,27 @@ public:
 	GameObject(float, float);
 	~GameObject();
 
+	//This is good
+	virtual void update() = 0;
+	virtual void render() = 0;
+
+	void damage(int); //Take damage
+
+	virtual void death() = 0; //Abstract death
+
 protected:
 
-	virtual void loadSound() = 0;
+	virtual void loadSound() = 0; //Load sound (will vary based off of class)
 
-	float xPos, yPos;
+	float xPos, yPos; 
 
-	ALuint breathSound, hurtSound, deathSound;
+	//Stats
+	int hp;
+	int hpMax;
+	int attack;
+	int speed;
+
+	ALuint breathSound, hurtSound, deathSound; //Audio buffers
 
 };
 

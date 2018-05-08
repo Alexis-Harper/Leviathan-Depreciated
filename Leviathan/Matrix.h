@@ -38,7 +38,7 @@ private:
 	std::vector<float> x;
 	std::vector<float> y;
 
-	int size = 0;
+	int size;
 
 };
 

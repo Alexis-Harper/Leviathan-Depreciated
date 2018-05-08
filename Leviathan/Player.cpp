@@ -22,6 +22,21 @@ unsigned int indecies[] {
 
 Player::Player() {
 
+	this->hp = 100;
+	this->hpMax = 100;
+	this->ammo = 100;
+	this->ammoMax = 100;
+	this->attack = 1;
+	this->range = 1;
+	this->defence = 1;
+	this->speed = 1;
+
+	this->xPos = 0.0f;
+	this->yPos = 0.0f;
+
+	this->vX = 0.0f;
+	this->vY = 0.0f;
+
 	/*
 	glGenTextures(1, &texture); //Generate OpenGL texture ID
 	glBindTexture(GL_TEXTURE_2D, texture); //Bind ID to GL_TEXTURE_2D
@@ -172,30 +187,6 @@ void Player::damagePhy(int attack) {
 
 }
 
-void Player::damageMag(int magic) {
-
-	int health = magic / this->resistance; //How much health is taken
-
-	if (health >= hp) {
-
-		//Die
-
-		alSourcei(playerSource, AL_BUFFER, deathSound);
-		alSourcePlay(playerSource);
-
-	} else {
-
-		//Take damage
-
-		alSourcei(playerSource, AL_BUFFER, hurtSoundMag);
-		alSourcePlay(playerSource);
-
-		hp -= health;
-
-	}
-
-}
-
 void Player::update() {
 
 	//Get direction; temp layout (saves resources and time)
@@ -297,5 +288,18 @@ void Player::move(bool up, bool right, bool down, bool left) {
 	this->canMove[1] = right;
 	this->canMove[2] = down;
 	this->canMove[3] = left;
+
+}
+
+void Player::setStats(int hp, int hpMax, int ammo, int ammoMax, int attack, int range, int defence, int speed) {
+
+
+
+}
+
+void Player::setPosition(float x, float y) {
+
+	this->xPos = x;
+	this->yPos = y;
 
 }

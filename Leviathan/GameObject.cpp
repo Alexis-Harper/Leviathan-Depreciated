@@ -25,3 +25,17 @@ GameObject::~GameObject() {
 
 
 }
+
+void GameObject::damage(int attack) {
+
+	if (attack >= this->hp) {
+
+		this->death();
+
+	} else {
+
+		this->hp -= attack;
+
+	}
+
+}

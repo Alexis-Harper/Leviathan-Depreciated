@@ -22,6 +22,7 @@ public:
 	Arena(char*);
 	~Arena();
 
+	//Store all walls
 	vector<Rectangle> arenaUp;
 	vector<Rectangle> arenaRight;
 	vector<Rectangle> arenaDown;
