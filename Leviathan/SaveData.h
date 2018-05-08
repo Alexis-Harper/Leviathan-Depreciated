@@ -10,6 +10,7 @@
 #include "Player.h"
 
 #include "rapidxml.hpp"
+#include "rapidxml_print.hpp"
 
 #define FILENAME "assets/save/file.xml"
 
@@ -23,15 +24,18 @@ public:
 	SaveData();
 	~SaveData();
 
-	void saveData();
+	void saveData(string, Player); //Save all data
 
-	void loadArena(Arena*);
+	void loadArena(Arena*); //Load save data
 	void loadPlayer(Player*);
 
 private:
 
-	ifstream theFile;
+	//File IO objects
+	ifstream readFile;
+	ofstream writeFile;
 
+	//XML data
 	xml_document<> save_file;
 	xml_node<> *save_file_node;
 

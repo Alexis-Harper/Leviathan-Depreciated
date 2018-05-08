@@ -30,6 +30,12 @@ public:
 
 	vector<GameObject> gameObjects; //Stores all enemies, bosses, etc.
 
+	string getLocation();
+
+private:
+
+	string location;
+
 };
 
 #endif

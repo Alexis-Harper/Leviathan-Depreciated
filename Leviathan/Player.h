@@ -21,10 +21,23 @@ public:
 
 	void damagePhy(int); //Physical attack
 
-	void move(bool, bool, bool, bool);
+	void move(bool, bool, bool, bool); //Sets where player can move
 
+	//Setters
 	void setStats(int, int, int, int, int, int, int, int);
 	void setPosition(float, float);
+
+	//Getters
+	int getHp();
+	int getHpMax();
+	int getAmmo();
+	int getAmmoMax();
+	int getAttack();
+	int getRange();
+	int getDefence();
+	int getSpeed();
+	float getX();
+	float getY();
 	
 	Rectangle hitbox;
 
@@ -57,7 +70,7 @@ private:
 
 	unsigned int shaderProgram; //Dual shader program pointer
 
-	ALuint hurtSoundPhy, hurtSoundMag, deathSound, playerSource;
+	ALuint hurtSoundPhy, hurtSoundMag, deathSound, playerSource; //Player sounds
 
 };
 

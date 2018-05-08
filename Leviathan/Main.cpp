@@ -4,6 +4,7 @@
 #include "Audio.h"
 #include "Input.h"
 #include "GameObject.h"
+#include "SaveData.h"
 
 using namespace std;
 
@@ -308,10 +309,17 @@ int main() {
 	//Delete all necessary things (heap objects)
 	delete arenaObject; 
 
+	//Destroy all objects
+	player.~Player();
+	inputObject.~Input();
+	saveObject.~SaveData();
+
+	//GLFW
 	glfwDestroyWindow(window); //Destroy window
 
 	glfwTerminate(); //Close GLFW
 
+	//OpenAL
 	alutExit(); //Close ALut
 
 	return 0;

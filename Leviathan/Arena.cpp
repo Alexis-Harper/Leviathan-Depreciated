@@ -66,10 +66,23 @@ Arena::Arena(char* fileDir) {
 
 	}
 
+	this->location = fileDir;
+
 }
 
 Arena::~Arena() {
 
+	arenaUp.clear();
+	arenaRight.clear();
+	arenaDown.clear();
+	arenaLeft.clear();
 
+	gameObjects.clear();
+
+}
+
+string Arena::getLocation() {
+
+	return this->location;
 
 }

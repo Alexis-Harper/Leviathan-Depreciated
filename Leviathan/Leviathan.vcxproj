@@ -76,7 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)ExternalResources\rapidxml-1.13;$(SolutionDir)ExternalResources\OpenAL 1.1 SDK\include;$(SolutionDir)ExternalResources\glew-2.1.0\include\;$(SolutionDir)ExternalResources\glfw-3.2.1\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ExternalResources\OpenAL 1.1 SDK\include;$(SolutionDir)ExternalResources\glew-2.1.0\include\;$(SolutionDir)ExternalResources\glfw-3.2.1\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <UndefinePreprocessorDefinitions>GLEW_STATIC;STB_IMAGE_IMPLEMENTATION</UndefinePreprocessorDefinitions>
       <ShowIncludes>false</ShowIncludes>
       <LanguageStandard>
@@ -150,6 +150,10 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="rapidxml.hpp" />
+    <ClInclude Include="rapidxml_iterators.hpp" />
+    <ClInclude Include="rapidxml_print.hpp" />
+    <ClInclude Include="rapidxml_utils.hpp" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="SaveData.h" />
     <ClInclude Include="stb_image.h" />

@@ -291,9 +291,18 @@ void Player::move(bool up, bool right, bool down, bool left) {
 
 }
 
+//Setters
+
 void Player::setStats(int hp, int hpMax, int ammo, int ammoMax, int attack, int range, int defence, int speed) {
 
-
+	this->hp = hp;
+	this->hpMax = hpMax;
+	this->ammo = ammo;
+	this->ammoMax = ammoMax;
+	this->attack = attack;
+	this->range = range;
+	this->defence = defence;
+	this->speed = speed;
 
 }
 
@@ -301,5 +310,67 @@ void Player::setPosition(float x, float y) {
 
 	this->xPos = x;
 	this->yPos = y;
+
+}
+
+//Getters
+
+int Player::getHp() {
+
+	return this->hp;
+
+}
+
+int Player::getHpMax() {
+
+	return this->hpMax;
+
+}
+
+int Player::getAmmo() {
+
+	return this->ammo;
+
+}
+
+int Player::getAmmoMax() {
+
+	return this->ammoMax;
+
+}
+
+int Player::getAttack() {
+
+	return this->attack;
+
+}
+
+int Player::getRange() {
+
+	return this->range;
+
+}
+
+int Player::getDefence() {
+
+	return this->defence;
+
+}
+
+int Player::getSpeed() {
+
+	return this->speed;
+
+}
+
+float Player::getX() {
+
+	return this->xPos;
+
+}
+
+float Player::getY() {
+
+	return this->yPos;
 
 }
