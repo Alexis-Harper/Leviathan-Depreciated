@@ -52,6 +52,9 @@
     <Filter Include="Header Files\lib">
       <UniqueIdentifier>{103f6c63-94a5-4680-a86d-bd1b263ed6f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Global Headers">
+      <UniqueIdentifier>{42053e13-9da7-4627-b4ec-c197705afa49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -92,16 +95,10 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Audio.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AudioEnum.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Arena.h">
@@ -139,6 +136,12 @@
     </ClInclude>
     <ClInclude Include="rapidxml_iterators.hpp">
       <Filter>Header Files\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files\Global Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioEnum.h">
+      <Filter>Header Files\Global Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
