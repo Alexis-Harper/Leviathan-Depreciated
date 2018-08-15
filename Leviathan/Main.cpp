@@ -200,8 +200,6 @@ int main() {
 
 			glfwPollEvents(); //Checks for events such as glfwWindowShouldClose() or controller input (including callbacks)
 
-			int temp;
-
 			//Update physics
 
 			bool canMove[4]; //This helps keep track of player with walls
@@ -211,11 +209,9 @@ int main() {
 			canMove[1] = true;
 			canMove[2] = true;
 			canMove[3] = true;
-			
-			temp = arenaObject->arenaUp.size(); //Speeds up and prevents errors
 
 			//Should player be able to go up
-			for (int i = 0; i < temp; i++) {
+			for (int i = 0; i < arenaObject->arenaUp.size(); i++) {
 
 				if (Rectangle::rectIsColliding(player.hitbox, arenaObject->arenaUp[i])) {
 
@@ -227,10 +223,8 @@ int main() {
 
 			}
 
-			temp = arenaObject->arenaRight.size();
-
 			//Should player be able to go right
-			for (int i = 0; i < temp; i++) {
+			for (int i = 0; i < arenaObject->arenaRight.size(); i++) {
 
 				if (Rectangle::rectIsColliding(player.hitbox, arenaObject->arenaRight[i])) {
 
@@ -242,10 +236,8 @@ int main() {
 
 			}
 
-			temp = arenaObject->arenaDown.size();
-
 			//Should player be able to go down
-			for (int i = 0; i < temp; i++) {
+			for (int i = 0; i < arenaObject->arenaDown.size(); i++) {
 
 				if (Rectangle::rectIsColliding(player.hitbox, arenaObject->arenaDown[i])) {
 
@@ -257,10 +249,8 @@ int main() {
 
 			}
 
-			temp = arenaObject->arenaLeft.size();
-
 			//Should player be able to go left
-			for (int i = 0; i < temp; i++) {
+			for (int i = 0; i < arenaObject->arenaLeft.size(); i++) {
 
 				if (Rectangle::rectIsColliding(player.hitbox, arenaObject->arenaDown[i])) {
 
@@ -274,10 +264,8 @@ int main() {
 
 			player.move(canMove[0], canMove[1], canMove[2], canMove[3]); //Let movement work
 
-			temp = arenaObject->gameObjects.size(); //Saves time and errors
-
 			//Update all Game Objects
-			for (int i = 0; i < temp; i++) {
+			for (int i = 0; i < arenaObject->gameObjects.size(); i++) {
 
 				arenaObject->gameObjects[i].update();
 
@@ -286,7 +274,7 @@ int main() {
 			//Update graphics
 
 			//Render all Game Objects
-			for (int i = 0; i < temp; i++) {
+			for (int i = 0; i < arenaObject->gameObjects.size(); i++) {
 
 				arenaObject->gameObjects[i].render();
 

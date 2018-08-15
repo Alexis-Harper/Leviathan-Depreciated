@@ -75,7 +75,7 @@ void Audio::replaceEnding(char* buf) {
 
 	this->playNext = true; //Turn on playNext
 
-	int len = strlen(buf); //Get length of buffer
+	int len = (int)(strlen(buf)); //Get length of buffer
 
 	this->nextSong = new char[len]; //Dynamic memory FTW
 	this->nextSong = buf; //Put buffer in next song name buffer

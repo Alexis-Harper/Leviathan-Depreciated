@@ -135,7 +135,7 @@ void Vector::setVector(std::vector<float> newVec) {
 	//Resize if necessary
 	if (newVec.size() != this->size) {
 
-		size = newVec.size();
+		size = (int)(newVec.size());
 
 		this->vect.resize(newVec.size());
 
