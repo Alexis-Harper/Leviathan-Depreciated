@@ -2,6 +2,8 @@
 
 #include "Player.h"
 
+#include "Input.h"
+
 float vertecies[] = {
 
 	//Position		//TextureArray

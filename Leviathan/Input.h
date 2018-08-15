@@ -3,7 +3,7 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-#include "Player.h"
+#include "DirectionEnum.h"
 
 class Input {
 
@@ -23,7 +23,7 @@ public:
 	double getCursorY();
 	double* getCursorArray();
 
-	Direction eightDirection(int); //Get all directions
+	int eightDirection(int); //Get all directions
 
 private:
 

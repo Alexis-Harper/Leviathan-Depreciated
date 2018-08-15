@@ -3,6 +3,7 @@
 #include "Arena.h"
 #include "Audio.h"
 #include "Input.h"
+#include "Player.h"
 #include "GameObject.h"
 #include "SaveData.h"
 

@@ -3,8 +3,6 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-#include "Input.h"
-
 class Matrix {
 
 public:

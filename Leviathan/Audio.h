@@ -1,8 +1,9 @@
 #pragma once
 
-#include "AudioEnum.h"
+#ifndef AUDIO_H
+#define AUDIO_H
 
-#include "Input.h"
+#include "AudioEnum.h"
 
 class Audio {
 
@@ -29,3 +30,5 @@ private:
 	char* nextSong = new char[255];
 
 } audioObject;
+
+#endif

@@ -3,8 +3,6 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
-#include "Input.h"
-
 class Vector {
 
 public:

@@ -60,7 +60,7 @@ double* Input::getCursorArray() {
 
 }
 
-Direction Input::eightDirection(int arr) {
+int Input::eightDirection(int arr) {
 
 	if (isControllerUsed) {
 

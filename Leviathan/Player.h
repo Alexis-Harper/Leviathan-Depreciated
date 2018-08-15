@@ -3,10 +3,11 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include "DirectionEnum.h"
+
 #include <fstream>
 #include <sstream>
 
-#include "Input.h"
 #include "Rectangle.h"
 
 class Player {
@@ -38,7 +39,7 @@ public:
 	int getSpeed();
 	float getX();
 	float getY();
-	
+
 	Rectangle hitbox;
 
 private:
@@ -57,7 +58,7 @@ private:
 	float xPos, yPos; //Position
 	float vX, vY; //Velocity
 
-	Direction direction; //Direction for graphics
+	int direction; //Direction for graphics
 
 	unsigned char *image; //Image pointer
 

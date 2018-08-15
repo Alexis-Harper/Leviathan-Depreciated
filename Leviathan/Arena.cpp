@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Arena.h"
 
+#include "Audio.h"
+
 Arena::Arena() {
 
 	//IDK what to do

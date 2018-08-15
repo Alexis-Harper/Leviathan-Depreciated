@@ -9,6 +9,10 @@
 #include <cmath>
 #include <vector>
 
+#ifndef M_PI
+	#define M_PI 3.14159265358979323846
+#endif
+
 #include <chrono>
 
 #include <string>
@@ -18,28 +22,15 @@
 #include <GL\glew.h>
 
 // GLFW
+#define GLFW_DLL
 #include <GLFW\glfw3.h>
 
 //stb_image
-#define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
 //OpenAL
 #include <al.h>
 #include <alc.h>
 #include <alut.h>
-
-//Global enum (this is necessary)
-#ifndef DIRECTION_H
-#define DIRECTION_H
-
-//8 direction enum
-enum Direction {
-
-	UP, UP_RIGHT, RIGHT, DOWN_RIGHT, DOWN_LEFT, LEFT, UP_LEFT, DOWN, NONE
-
-};
-
-#endif
 
 #endif

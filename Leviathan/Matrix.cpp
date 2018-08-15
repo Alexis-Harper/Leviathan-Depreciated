@@ -25,8 +25,8 @@ Matrix::Matrix(int num) {
 
 Matrix::Matrix(std::vector<float> x, std::vector<float> y) {
 
-	int xSize = x.size();
-	int ySize = y.size();
+	int xSize = (int)(x.size());
+	int ySize = (int)(y.size());
 
 	std::vector<float> tempX = x;
 	std::vector<float> tempY = y;
@@ -132,7 +132,7 @@ void Matrix::setY(int adress, float value) {
 
 void Matrix::setX(std::vector<float> x) {
 
-	int xSize = x.size();
+	int xSize = (int)(x.size());
 
 	if (xSize == this->size) {
 
@@ -153,7 +153,7 @@ void Matrix::setX(std::vector<float> x) {
 
 void Matrix::setY(std::vector<float> y) {
 
-	int ySize = y.size();
+	int ySize = (int)(y.size());
 
 	if (ySize == this->size) {
 
@@ -174,8 +174,8 @@ void Matrix::setY(std::vector<float> y) {
 
 void Matrix::setMatrix(std::vector<float> x, std::vector<float> y) {
 
-	int xSize = x.size(); //This prevents errors
-	int ySize = y.size();
+	int xSize = (int)(x.size()); //This prevents errors
+	int ySize = (int)(y.size());
 
 	std::vector<float> tempX = x;
 	std::vector<float> tempY = y;
