@@ -18,7 +18,7 @@ enum GameState {
 
 } state;
 
-Arena* arenaObject = new Arena(); //Dynamic arenaObject that can be changed a lot
+Arena *arenaObject = new Arena(); //Dynamic arenaObject that can be changed a lot
 
 //GLFW Callbacks
 void framebuffer_size_callback(GLFWwindow*, int, int);
@@ -190,7 +190,7 @@ int main() {
 
 		auto deltaTime = std::chrono::high_resolution_clock::now() - startTime; //Calculates delta (time since last frame)
 
-		Input::delta = (int)(std::chrono::duration_cast<std::chrono::nanoseconds>(deltaTime) / timestep);
+		Input::setDelta((int)(std::chrono::duration_cast<std::chrono::nanoseconds>(deltaTime) / timestep));
 
 		//Limit FPS to 60 Hz
 		if (std::chrono::duration_cast<std::chrono::nanoseconds>(deltaTime) >= timestep) {
@@ -266,18 +266,41 @@ int main() {
 			player.move(canMove[0], canMove[1], canMove[2], canMove[3]); //Let movement work
 
 			//Update all Game Objects
-			for (int i = 0; i < arenaObject->gameObjects.size(); i++) {
+			Arena::GameObjects *o = arenaObject->first;
+			Arena::GameObjects **last = NULL;
 
-				arenaObject->gameObjects[i].update();
+			while (o != NULL) {
+
+				if (o->object->update()) {
+
+					if (o == arenaObject->first) {
+
+						arenaObject->first = o->next;
+
+					} else {
+
+						last = &o->next;
+
+					}
+					
+					o->object->~GameObject();
+
+				}
+
+				last = &o;
+				o = o->next;
 
 			}
 
 			//Update graphics
 
-			//Render all Game Objects
-			for (int i = 0; i < arenaObject->gameObjects.size(); i++) {
+			o = arenaObject->first;
 
-				arenaObject->gameObjects[i].render();
+			while (o != NULL) {
+
+				o->object->render();
+
+				o = o->next;
 
 			}
 

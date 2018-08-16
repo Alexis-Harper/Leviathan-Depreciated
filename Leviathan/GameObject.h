@@ -12,10 +12,10 @@ public:
 	~GameObject();
 
 	//This is good
-	virtual void update() = 0;
+	virtual bool update() = 0;
 	virtual void render() = 0;
 
-	void damage(int); //Take damage
+	bool damage(int); //Take damage
 
 	virtual void death() = 0; //Abstract death
 

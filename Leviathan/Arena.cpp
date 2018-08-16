@@ -77,12 +77,22 @@ Arena::Arena(char* fileDir) {
 
 Arena::~Arena() {
 
+	//Clear vectors
 	arenaUp.clear();
 	arenaRight.clear();
 	arenaDown.clear();
 	arenaLeft.clear();
 
-	gameObjects.clear();
+	//Clear linked lists
+	GameObjects *o = this->first;
+
+	while (o != NULL) {
+
+		delete o->object;
+
+		o = o->next;
+
+	}
 
 }
 

@@ -265,8 +265,8 @@ void Player::update() {
 
 	}
 
-	this->xPos += (float)(vX * Input::delta); //Change position by velocity times delta (the ratio of frames to timeframe)
-	this->yPos += (float)(vY * Input::delta);
+	this->xPos += (float)(vX * Input::getDelta()); //Change position by velocity times delta (the ratio of frames to timeframe)
+	this->yPos += (float)(vY * Input::getDelta());
 
 	this->hitbox.translate(vX, vY); //Translate hitbox
 

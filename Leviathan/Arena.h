@@ -24,9 +24,19 @@ public:
 	std::vector<Rectangle> arenaDown;
 	std::vector<Rectangle> arenaLeft;
 
-	std::vector<GameObject> gameObjects; //Stores all enemies, bosses, etc.
-
 	std::string getLocation();
+
+	//Game objects linked list
+
+	struct GameObjects {
+
+		GameObject *object;
+
+		GameObjects *next;
+
+	};
+
+	struct GameObjects *first;
 
 private:
 

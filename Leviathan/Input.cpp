@@ -6,6 +6,8 @@ namespace Input {
 
 	namespace {
 
+		double delta; //Time ratio (delta)
+
 		bool keyPressed[65536]; //Array containing every key's 'is pressed' status
 
 		double cursorPosX; //Mouse cursor position
@@ -18,6 +20,18 @@ namespace Input {
 	void setup() {
 
 		isControllerUsed = glfwGetJoystickName(GLFW_JOYSTICK_1) != NULL;
+
+	}
+
+	void setDelta(double value) {
+
+		delta = value;
+
+	}
+
+	double getDelta() {
+
+		return delta;
 
 	}
 

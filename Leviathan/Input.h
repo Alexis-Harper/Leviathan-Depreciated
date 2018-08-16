@@ -7,9 +7,10 @@
 
 namespace Input {
 
-	double delta; //Time ratio (delta)
-
 	void setup();
+
+	void setDelta(double);
+	double getDelta();
 
 	void keyCallback(int, int); //Called on every key callback (transmits main.cpp callback data to inputObject)
 	void cursorCallback(double, double);
