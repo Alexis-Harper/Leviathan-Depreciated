@@ -5,6 +5,26 @@
 
 #include "DirectionEnum.h"
 
+namespace Input {
+
+	double delta; //Time ratio (delta)
+
+	void setup();
+
+	void keyCallback(int, int); //Called on every key callback (transmits main.cpp callback data to inputObject)
+	void cursorCallback(double, double);
+
+	bool isKeyPressed(int); //Get bool data of if key is pressed
+
+	double getCursorX(); //Get position stuff
+	double getCursorY();
+	double* getCursorArray();
+
+	int eightDirection(int); //Get all directions
+
+}
+
+/*
 class Input {
 
 public:
@@ -35,5 +55,5 @@ private:
 	bool isControllerUsed;
 
 } inputObject; //Create object to store data
-
+*/
 #endif

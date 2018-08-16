@@ -10,9 +10,6 @@
 #include "GameObject.h"
 #include "Rectangle.h"
 
-using namespace rapidxml;
-using namespace std;
-
 class Arena {
 
 public:
@@ -22,18 +19,18 @@ public:
 	~Arena();
 
 	//Store all walls
-	vector<Rectangle> arenaUp;
-	vector<Rectangle> arenaRight;
-	vector<Rectangle> arenaDown;
-	vector<Rectangle> arenaLeft;
+	std::vector<Rectangle> arenaUp;
+	std::vector<Rectangle> arenaRight;
+	std::vector<Rectangle> arenaDown;
+	std::vector<Rectangle> arenaLeft;
 
-	vector<GameObject> gameObjects; //Stores all enemies, bosses, etc.
+	std::vector<GameObject> gameObjects; //Stores all enemies, bosses, etc.
 
-	string getLocation();
+	std::string getLocation();
 
 private:
 
-	string location;
+	std::string location;
 
 };
 

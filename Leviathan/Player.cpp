@@ -192,14 +192,14 @@ void Player::damagePhy(int attack) {
 void Player::update() {
 
 	//Get direction; temp layout (saves resources and time)
-	bool upKey = inputObject.isKeyPressed(GLFW_KEY_UP);
-	bool rightKey = inputObject.isKeyPressed(GLFW_KEY_RIGHT);
-	bool downKey = inputObject.isKeyPressed(GLFW_KEY_DOWN);
-	bool leftKey = inputObject.isKeyPressed(GLFW_KEY_LEFT);
+	bool upKey = Input::isKeyPressed(GLFW_KEY_UP);
+	bool rightKey = Input::isKeyPressed(GLFW_KEY_RIGHT);
+	bool downKey = Input::isKeyPressed(GLFW_KEY_DOWN);
+	bool leftKey = Input::isKeyPressed(GLFW_KEY_LEFT);
 
-	bool run = inputObject.isKeyPressed(GLFW_KEY_C); //Run button; temp layout
+	bool run = Input::isKeyPressed(GLFW_KEY_C); //Run button; temp layout
 
-	int eightDirection = inputObject.eightDirection(0); //Joystick if necessary
+	int eightDirection = Input::eightDirection(0); //Joystick if necessary
 
 	//Tons of movement stuff (if certain moement, change graphics direction and velocity)
 	if ((upKey && rightKey && !downKey && !leftKey) || eightDirection == UP_RIGHT) {
@@ -265,8 +265,8 @@ void Player::update() {
 
 	}
 
-	this->xPos += (float)(vX * inputObject.delta); //Change position by velocity times delta (the ratio of frames to timeframe)
-	this->yPos += (float)(vY * inputObject.delta);
+	this->xPos += (float)(vX * Input::delta); //Change position by velocity times delta (the ratio of frames to timeframe)
+	this->yPos += (float)(vY * Input::delta);
 
 	this->hitbox.translate(vX, vY); //Translate hitbox
 

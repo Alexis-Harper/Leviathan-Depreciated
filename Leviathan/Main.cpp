@@ -190,7 +190,7 @@ int main() {
 
 		auto deltaTime = std::chrono::high_resolution_clock::now() - startTime; //Calculates delta (time since last frame)
 
-		inputObject.delta = (int)(std::chrono::duration_cast<std::chrono::nanoseconds>(deltaTime) / timestep);
+		Input::delta = (int)(std::chrono::duration_cast<std::chrono::nanoseconds>(deltaTime) / timestep);
 
 		//Limit FPS to 60 Hz
 		if (std::chrono::duration_cast<std::chrono::nanoseconds>(deltaTime) >= timestep) {
@@ -283,7 +283,7 @@ int main() {
 
 			//player.render(); //Render player
 
-			audioObject.render(); //Render audio
+			Audio::render(); //Render audio
 
 			glClearColor(0.0f, 0.0f, 0.0f, 1.0f); //Black background (like ALttP)
 
@@ -300,8 +300,8 @@ int main() {
 
 	//Destroy all objects
 	player.~Player();
-	inputObject.~Input();
-	saveObject.~SaveData();
+	Input::setup();
+	SaveData::setup();
 
 	//GLFW
 	glfwDestroyWindow(window); //Destroy window
@@ -325,12 +325,12 @@ void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
 
 void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods) {
 
-	inputObject.keyCallback(key, action); //Route keypresses
+	Input::keyCallback(key, action); //Route keypresses
 
 }
 
 void mouse_pos_callback(GLFWwindow *window, double xpos, double ypos) {
 
-	inputObject.cursorCallback(xpos, ypos);
+	Input::cursorCallback(xpos, ypos);
 
 }

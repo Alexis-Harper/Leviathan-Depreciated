@@ -2,112 +2,87 @@
 
 #include "Audio.h"
 
-//Set up music
-ALuint musicBuffer, musicSource;
+namespace Audio {
 
-Audio::Audio() {
+	namespace {
 
-	//Set listener data
-	alListener3f(AL_POSITION, 0.0f, 0.0f, 0.0f);
-	alListener3f(AL_VELOCITY, 0.0f, 0.0f, 0.0f);
-	alListener3f(AL_ORIENTATION, 0.0f, 0.0f, 0.0f);
+		ALuint musicBuffer, musicSource;
 
-	alGetError(); //Clear error buffer
+		bool repeatMusic = true; //Keep track of weather music repeats
 
-	musicBuffer = alutCreateBufferHelloWorld(); //Hello World to test rest of code (delete once done)
-
-	//musicBuffer = alutCreateBufferFromFile("temp.wav"); //Create a buffer that stores the data of "temp.wav"
-
-	//Check if buffer failed
-	if (alutGetError() != ALUT_ERROR_NO_ERROR) {
-
-		std::cout << "[-] ALut: File \"temp.wav\" could not load ";
+		bool playNext = false;
+		char* nextSong = new char[255];
 
 	}
 
-	//Create and link music buffer to a source
-	alGenSources(1, &musicSource);
-	alSourcei(musicSource, AL_BUFFER, musicBuffer);
+	void render() {
 
-	alSourcei(musicSource, AL_LOOPING, 1); //Turn on looping by default
+		ALint state; //Stores music state
 
-}
+		alGetSourcei(musicSource, AL_SOURCE_STATE, &state); //Gets music state
 
-Audio::~Audio() {
+		//If song is over and playNext is on
+		if (state != AL_PLAYING && playNext) {
 
-	alDeleteBuffers(1, &musicBuffer); //Delete buffers (important for memory)
-	alDeleteSources(1, &musicSource);
+			changeMusic(nextSong); //Change to next song
 
-	delete this->nextSong; //It's dynamic memory. This is 100% neccessary
+			playNext = false; //Turn off playNext
 
-}
-
-void Audio::render() {
-
-	ALint state; //Stores music state
-
-	alGetSourcei(musicSource, AL_SOURCE_STATE, &state); //Gets music state
-
-	//If song is over and playNext is on
-	if (state != AL_PLAYING && this->playNext) {
-
-		this->changeMusic(this->nextSong); //Change to next song
-
-		this->playNext = false; //Turn off playNext
+		}
 
 	}
 
-}
+	void stopMusic() {
 
-void Audio::stopMusic() {
+		alSourceStop(musicSource); //Stop the source
 
-	alSourceStop(musicSource); //Stop the source
+		alDeleteBuffers(1, &musicBuffer); //Delete existing buffer
 
-	alDeleteBuffers(1, &musicBuffer); //Delete existing buffer
+	}
 
-}
+	void Audio::replaceEnding(char* buf) {
 
-void Audio::replaceEnding(char* buf) {
+		//Stop looping
+		repeatMusic = false;
+		alSourcei(musicSource, AL_LOOPING, 0);
 
-	//Stop looping
-	this->repeatMusic = false;
-	alSourcei(musicSource, AL_LOOPING, 0);
+		playNext = true; //Turn on playNext
 
-	this->playNext = true; //Turn on playNext
+		int len = (int)(strlen(buf)); //Get length of buffer
 
-	int len = (int)(strlen(buf)); //Get length of buffer
+		nextSong = new char[len]; //Dynamic memory FTW
+		nextSong = buf; //Put buffer in next song name buffer
 
-	this->nextSong = new char[len]; //Dynamic memory FTW
-	this->nextSong = buf; //Put buffer in next song name buffer
+	}
 
-}
+	void changeMusic(char* file) {
 
-void Audio::changeMusic(char* file) {
+		musicBuffer = alutCreateBufferFromFile(file); //Create new buffer
 
-	musicBuffer = alutCreateBufferFromFile(file); //Create new buffer
+		alSourcei(musicSource, AL_BUFFER, musicBuffer); //Link buffer
 
-	alSourcei(musicSource, AL_BUFFER, musicBuffer); //Link buffer
+	}
 
-}
+	bool getRepeatMusic() {
 
-bool Audio::getRepeatMusic() {
+		return repeatMusic;
 
-	return this->repeatMusic;
+	}
 
-}
+	void setRepeatMusic(bool value) {
 
-void Audio::setRepeatMusic(bool value) {
+		repeatMusic = value;
 
-	this->repeatMusic = value;
+		alSourcei(musicSource, AL_LOOPING, value);
 
-	alSourcei(musicSource, AL_LOOPING, value);
+	}
 
-}
+	void toggleRepeatMusic() {
 
-void Audio::toggleRepeatMusic() {
+		repeatMusic = !repeatMusic;
 
-	this->repeatMusic = !this->repeatMusic;
+		alSourcei(musicSource, AL_LOOPING, repeatMusic);
 
-	alSourcei(musicSource, AL_LOOPING, this->repeatMusic);
+	}
 
 }

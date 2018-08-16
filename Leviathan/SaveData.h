@@ -12,12 +12,18 @@
 #include "rapidxml.hpp"
 #include "rapidxml_print.hpp"
 
-#define FILENAME "assets/save/file.xml"
+namespace SaveData {
 
-using namespace rapidxml;
-using namespace std;
+	void setup();
 
-class SaveData {
+	void saveData(std::string, Player); //Save all data
+
+	void loadArena(Arena*); //Load save data
+	void loadPlayer(Player*);
+
+};
+
+/*class SaveData {
 
 public:
 
@@ -39,6 +45,6 @@ private:
 	xml_document<> save_file;
 	xml_node<> *save_file_node;
 
-} saveObject;
+} saveObject;*/
 
 #endif

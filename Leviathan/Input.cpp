@@ -2,121 +2,137 @@
 
 #include "Input.h"
 
-Input::Input() {
+namespace Input {
 
-	isControllerUsed = glfwGetJoystickName(GLFW_JOYSTICK_1) != NULL;
+	namespace {
 
-}
+		bool keyPressed[65536]; //Array containing every key's 'is pressed' status
 
-Input::~Input() {
-	
-	//Deconstructor
+		double cursorPosX; //Mouse cursor position
+		double cursorPosY;
 
-}
+		bool isControllerUsed;
 
-//Callbacks
+	}
 
-void Input::keyCallback(int key, int action) {
+	void setup() {
 
-	keyPressed[key] = action != GLFW_RELEASE;
+		isControllerUsed = glfwGetJoystickName(GLFW_JOYSTICK_1) != NULL;
 
-}
+	}
 
-void Input::cursorCallback(double x, double y) {
+	void keyCallback(int key, int action) {
 
-	cursorPosX = x;
-	cursorPosY = y;
+		keyPressed[key] = action != GLFW_RELEASE;
 
-}
+	}
 
-//Getters and Setters
+	void cursorCallback(double x, double y) {
 
-bool Input::isKeyPressed(int keycode) {
+		cursorPosX = x;
+		cursorPosY = y;
 
-	return keyPressed[keycode];
+	}
 
-}
+	//Getters and Setters
 
-double Input::getCursorX() {
+	bool isKeyPressed(int keycode) {
 
-	return cursorPosX;
+		return keyPressed[keycode];
 
-}
+	}
 
-double Input::getCursorY() {
+	double getCursorX() {
 
-	return cursorPosY;
+		return cursorPosX;
 
-}
+	}
 
-double* Input::getCursorArray() {
+	double Input::getCursorY() {
 
-	static double arr[2];
+		return cursorPosY;
 
-	arr[0] = cursorPosX; //Set array
-	arr[1] = cursorPosY;
+	}
 
-	return arr;
+	double* Input::getCursorArray() {
 
-}
+		static double arr[2];
 
-int Input::eightDirection(int arr) {
+		arr[0] = cursorPosX; //Set array
+		arr[1] = cursorPosY;
 
-	if (isControllerUsed) {
+		return arr;
 
-		int count;
-		const float *joyArr = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &count);
+	}
 
-		float x = joyArr[arr];
-		float y = joyArr[arr];
+	int Input::eightDirection(int arr) {
 
-		if (pow(x, 2) + pow(y, 2) < 1/8) {
+		if (isControllerUsed) {
 
-			return NONE; //Always returns false in direction calculation if joystick is in middle
+			int count;
+			const float *joyArr = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &count);
 
-		} else {
+			float x = joyArr[arr];
+			float y = joyArr[arr];
 
-			//Calculate which of the points it's between (this is complex stuff; I literrally had to use paper for this)
+			if (pow(x, 2) + pow(y, 2) < 1 / 8) {
 
-			if (acos(x / (sqrt(pow(x, 2) + pow(y, 2)))) >= M_PI / 8) {
+				return NONE; //Always returns false in direction calculation if joystick is in middle
 
-				return UP; //Return UP
+			}
+			else {
 
-			} else if (acos((x + y) / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) {
+				//Calculate which of the points it's between (this is complex stuff; I literrally had to use paper for this)
 
-				return UP_RIGHT;
+				if (acos(x / (sqrt(pow(x, 2) + pow(y, 2)))) >= M_PI / 8) {
 
-			} else if (acos(y / (sqrt(pow(x, 2) + pow(y, 2)))) >= M_PI / 8) {
+					return UP; //Return UP
 
-				return RIGHT;
+				}
+				else if (acos((x + y) / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) {
 
-			} else if (acos((x - y) / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) {
+					return UP_RIGHT;
 
-				return DOWN_RIGHT;
+				}
+				else if (acos(y / (sqrt(pow(x, 2) + pow(y, 2)))) >= M_PI / 8) {
 
-			} else if (acos((0 - x) / (sqrt(pow(x, 2) + pow(y, 2)))) >= M_PI / 8) {
+					return RIGHT;
 
-				return DOWN;
+				}
+				else if (acos((x - y) / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) {
 
-			} else if (acos(((0 - x) - y) / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) {
+					return DOWN_RIGHT;
 
-				return DOWN_LEFT;
+				}
+				else if (acos((0 - x) / (sqrt(pow(x, 2) + pow(y, 2)))) >= M_PI / 8) {
 
-			} else if (acos((0 - y) / (sqrt(pow(x, 2) + pow(y, 2)))) >= M_PI / 8) {
+					return DOWN;
 
-				return LEFT;
+				}
+				else if (acos(((0 - x) - y) / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) {
 
-			} else {
+					return DOWN_LEFT;
 
-				return UP_LEFT;
+				}
+				else if (acos((0 - y) / (sqrt(pow(x, 2) + pow(y, 2)))) >= M_PI / 8) {
+
+					return LEFT;
+
+				}
+				else {
+
+					return UP_LEFT;
+
+				}
 
 			}
 
 		}
+		else {
 
-	} else {
+			return NONE; //Always returns false in direction calculation if joystick isn't connected
 
-		return NONE; //Always returns false in direction calculation if joystick isn't connected
+		}
 
 	}
 

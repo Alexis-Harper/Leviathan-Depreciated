@@ -5,12 +5,7 @@
 
 #include "AudioEnum.h"
 
-class Audio {
-
-public:
-
-	Audio();
-	~Audio();
+namespace Audio {
 
 	void render();
 
@@ -22,13 +17,6 @@ public:
 	void setRepeatMusic(bool);
 	void toggleRepeatMusic();
 
-private:
-
-	bool repeatMusic = true; //Keep track of weather music repeats
-
-	bool playNext = false;
-	char* nextSong = new char[255];
-
-} audioObject;
+};
 
 #endif

@@ -3,6 +3,9 @@
 
 #include "Audio.h"
 
+using namespace rapidxml;
+using namespace std;
+
 Arena::Arena() {
 
 	//IDK what to do
@@ -28,8 +31,8 @@ Arena::Arena(char* fileDir) {
 	musicNode = doc.first_node("Music");
 	
 	//Set music data
-	audioObject.changeMusic(musicNode->first_attribute("dir")->value());
-	audioObject.setRepeatMusic(musicNode->first_attribute("repeat")->value());
+	Audio::changeMusic(musicNode->first_attribute("dir")->value());
+	Audio::setRepeatMusic(musicNode->first_attribute("repeat")->value());
 
 	arenaNode = doc.first_node("Arena");
 	//Upwards walls nodes
