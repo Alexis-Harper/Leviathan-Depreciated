@@ -19,9 +19,9 @@ public:
 
 	virtual void death() = 0; //Abstract death
 
-protected:
+private:
 
-	virtual void loadSound() = 0; //Load sound (will vary based off of class)
+	//virtual void loadSound() = 0; //Load sound (will vary based off of class)
 
 	float xPos, yPos; 
 
@@ -31,7 +31,7 @@ protected:
 	int attack;
 	int speed;
 
-	ALuint breathSound, hurtSound, deathSound; //Audio buffers
+	//ALuint breathSound, hurtSound, deathSound; //Audio buffers
 
 };
 

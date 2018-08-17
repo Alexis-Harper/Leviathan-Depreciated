@@ -4,7 +4,7 @@
 
 namespace Audio {
 
-	namespace {
+	/*namespace {
 
 		ALuint musicBuffer, musicSource;
 
@@ -83,6 +83,6 @@ namespace Audio {
 
 		alSourcei(musicSource, AL_LOOPING, repeatMusic);
 
-	}
+	}*/
 
 }

@@ -7,7 +7,7 @@
 
 namespace Audio {
 
-	void render();
+	/*void render();
 
 	void stopMusic();
 	void replaceEnding(char*);
@@ -15,7 +15,7 @@ namespace Audio {
 
 	bool getRepeatMusic();
 	void setRepeatMusic(bool);
-	void toggleRepeatMusic();
+	void toggleRepeatMusic();*/
 
 };
 

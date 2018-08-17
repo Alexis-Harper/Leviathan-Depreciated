@@ -7,7 +7,7 @@ GameObject::GameObject() {
 	xPos = 0;
 	yPos = 0;
 
-	loadSound();
+	//this->loadSound();
 
 }
 
@@ -16,7 +16,7 @@ GameObject::GameObject(float x, float y) {
 	xPos = x;
 	yPos = y;
 
-	loadSound();
+	//this->loadSound();
 
 }
 

@@ -171,15 +171,15 @@ int main() {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); //Make pixelated textures look pixelated
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //Make it to where a picture smaller than the texture looks good
 
-	alutInitWithoutContext(NULL, NULL); //Initialize ALut
+	//alutInitWithoutContext(NULL, NULL); //Initialize ALut
 
-	if (alGetError() != AL_NO_ERROR) {
+	/*if (alGetError() != AL_NO_ERROR) {
 
 		cout << "[-] ALut: ALut failed to initialize";
 
 		return 1;
 
-	}
+	}*/
 
 	Player player;
 
@@ -267,7 +267,7 @@ int main() {
 
 			//Update all Game Objects
 			Arena::GameObjects *o = arenaObject->first;
-			Arena::GameObjects **last = NULL;
+			Arena::GameObjects *last = NULL;
 
 			while (o != NULL) {
 
@@ -279,7 +279,7 @@ int main() {
 
 					} else {
 
-						last = &o->next;
+						last->next = o->next;
 
 					}
 					
@@ -287,7 +287,7 @@ int main() {
 
 				}
 
-				last = &o;
+				last = o;
 				o = o->next;
 
 			}
@@ -306,7 +306,7 @@ int main() {
 
 			//player.render(); //Render player
 
-			Audio::render(); //Render audio
+			//Audio::render(); //Render audio
 
 			glClearColor(0.0f, 0.0f, 0.0f, 1.0f); //Black background (like ALttP)
 
@@ -332,7 +332,7 @@ int main() {
 	glfwTerminate(); //Close GLFW
 
 	//OpenAL
-	alutExit(); //Close ALut
+	//alutExit(); //Close ALut
 
 	return 0;
 

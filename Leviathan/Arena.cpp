@@ -31,8 +31,8 @@ Arena::Arena(char* fileDir) {
 	musicNode = doc.first_node("Music");
 	
 	//Set music data
-	Audio::changeMusic(musicNode->first_attribute("dir")->value());
-	Audio::setRepeatMusic(musicNode->first_attribute("repeat")->value());
+	//Audio::changeMusic(musicNode->first_attribute("dir")->value());
+	//Audio::setRepeatMusic(musicNode->first_attribute("repeat")->value());
 
 	arenaNode = doc.first_node("Arena");
 	//Upwards walls nodes
