@@ -8,7 +8,7 @@ namespace Input {
 
 		double delta; //Time ratio (delta)
 
-		bool keyPressed[65536]; //Array containing every key's 'is pressed' status
+		GLFWwindow *window;
 
 		double cursorPosX; //Mouse cursor position
 		double cursorPosY;
@@ -19,7 +19,7 @@ namespace Input {
 
 	void setup() {
 
-		isControllerUsed = glfwGetJoystickName(GLFW_JOYSTICK_1) != NULL;
+		isControllerUsed = glfwJoystickPresent(GLFW_JOYSTICK_1);
 
 	}
 
@@ -35,9 +35,9 @@ namespace Input {
 
 	}
 
-	void keyCallback(int key, int action) {
+	void setWindow(GLFWwindow *ptr) {
 
-		keyPressed[key] = action != GLFW_RELEASE;
+		window = ptr;
 
 	}
 
@@ -52,7 +52,7 @@ namespace Input {
 
 	bool isKeyPressed(int keycode) {
 
-		return keyPressed[keycode];
+		return glfwGetKey(window, keycode);//keyPressed[keycode];
 
 	}
 
@@ -79,61 +79,65 @@ namespace Input {
 
 	}
 
+	//0 for left, 2 for right
 	int Input::eightDirection(int arr) {
 
 		if (isControllerUsed) {
 
-			int count;
-			const float *joyArr = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &count);
+			int jCount, bCount;
+			const float *joyArr = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &jCount);
 
 			float x = joyArr[arr];
-			float y = joyArr[arr];
+			float y = joyArr[arr + 1];
 
-			if (pow(x, 2) + pow(y, 2) < 1 / 8) {
+			const unsigned char *buttons = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &bCount);
+
+			#ifdef _DEBUG
+				std::cout << "Joystick: " << x << " " << y << "\n";
+				std::cout << "Buttons: " << (buttons[10] == 1) << (buttons[11] == 1) << (buttons[12] == 1) << (buttons[13] == 1) << "\n";
+			#endif //*/
+
+			if ((pow(x, 2) + pow(y, 2) <= M_PI / 8) && !buttons[10] && !buttons[11] && !buttons[12] && !buttons[13]) {
+				
+				/*#ifdef _DEBUG
+					std::cout << "NULL\n";
+				#endif //*/
 
 				return NONE; //Always returns false in direction calculation if joystick is in middle
 
-			}
-			else {
+			} else {
 
 				//Calculate which of the points it's between (this is complex stuff; I literrally had to use paper for this)
 
-				if (acos(x / (sqrt(pow(x, 2) + pow(y, 2)))) >= M_PI / 8) {
+				if ((acos(x / (sqrt(pow(x, 2) + pow(y, 2)))) >= M_PI / 8) || (buttons[10] && !buttons[11] && !buttons[12] && !buttons[13])) {
 
 					return UP; //Return UP
 
-				}
-				else if (acos((x + y) / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) {
+				} else if ((acos((x + y) / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) || (buttons[10] && buttons[11] && !buttons[12] && !buttons[13])) {
 
 					return UP_RIGHT;
 
-				}
-				else if (acos(y / (sqrt(pow(x, 2) + pow(y, 2)))) >= M_PI / 8) {
+				} else if ((acos(y / (sqrt(pow(x, 2) + pow(y, 2)))) >= M_PI / 8) || (!buttons[10] && buttons[11] && !buttons[12] && !buttons[13])) {
 
 					return RIGHT;
 
-				}
-				else if (acos((x - y) / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) {
+				} else if ((acos((x - y) / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) || (!buttons[10] && buttons[11] && buttons[12] && !buttons[13])) {
 
 					return DOWN_RIGHT;
 
-				}
-				else if (acos((0 - x) / (sqrt(pow(x, 2) + pow(y, 2)))) >= M_PI / 8) {
+				} else if ((acos((0 - x) / (sqrt(pow(x, 2) + pow(y, 2)))) >= M_PI / 8) || (!buttons[10] && !buttons[11] && buttons[12] && !buttons[13])) {
 
 					return DOWN;
 
-				}
-				else if (acos(((0 - x) - y) / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) {
+				} else if ((acos(((0 - x) - y) / (1.414213562373095048 * (sqrt(pow(x, 2) + pow(y, 2))))) >= M_PI / 8) || (!buttons[10] && !buttons[11] && buttons[12] && buttons[13])) {
 
 					return DOWN_LEFT;
 
-				}
-				else if (acos((0 - y) / (sqrt(pow(x, 2) + pow(y, 2)))) >= M_PI / 8) {
+				} else if ((acos((0 - y) / (sqrt(pow(x, 2) + pow(y, 2)))) >= M_PI / 8) || (!buttons[10] && !buttons[11] && !buttons[12] && buttons[13])) {
 
 					return LEFT;
 
-				}
-				else {
+				} else {
 
 					return UP_LEFT;
 
@@ -141,8 +145,7 @@ namespace Input {
 
 			}
 
-		}
-		else {
+		} else {
 
 			return NONE; //Always returns false in direction calculation if joystick isn't connected
 

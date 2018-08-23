@@ -12,7 +12,8 @@ namespace Input {
 	void setDelta(double);
 	double getDelta();
 
-	void keyCallback(int, int); //Called on every key callback (transmits main.cpp callback data to inputObject)
+	void setWindow(GLFWwindow*);
+
 	void cursorCallback(double, double);
 
 	bool isKeyPressed(int); //Get bool data of if key is pressed

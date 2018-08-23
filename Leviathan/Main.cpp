@@ -9,7 +9,7 @@
 
 using namespace std;
 
-constexpr std::chrono::nanoseconds timestep(16ms); //60 ticks per sec
+constexpr chrono::nanoseconds timestep(16ms); //60 ticks per sec
 
 //Enum that keeps track of where in the game you are, because that's an important
 enum GameState {
@@ -22,12 +22,19 @@ Arena *arenaObject = new Arena(); //Dynamic arenaObject that can be changed a lo
 
 //GLFW Callbacks
 void framebuffer_size_callback(GLFWwindow*, int, int);
-void key_callback(GLFWwindow*, int, int, int, int);
 void mouse_pos_callback(GLFWwindow*, double, double);
 
 int main() {
 
 	//Init
+
+	ios::sync_with_stdio(false); //Speed up cout (doesn't flush stream)
+
+	#ifdef _DEBUG
+		cout << "Running Leviathan: Debug " << VERSION_MAJOR << "." << VERSION_MINOR << "." << VERSION_BUILD << " " << VERSION_SUFFIX << "\n\n";
+	#else
+		cout << "Running Leviathan: Release " << VERSION_MAJOR << "." << VERSION_MINOR << "." << VERSION_BUILD << " " << VERSION_SUFFIX << "\n\n";
+	#endif
 
 	//Initialize GLFW
 	if (!glfwInit()) {
@@ -36,7 +43,13 @@ int main() {
 
 		return 1;
 
+	} else {
+
+
+
 	}
+
+
 
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4); //Use OpenGL version 4.1
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
@@ -126,6 +139,8 @@ int main() {
 
 	GLFWwindow *window = glfwCreateWindow(windowResX, windowResY, "Leviathan", NULL, NULL); //Create window
 
+	Input::setWindow(window);
+
 	//Make sure window exists
 	if (!window) {
 
@@ -144,7 +159,6 @@ int main() {
 
 	//Set callbacks
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-	glfwSetKeyCallback(window, key_callback);
 	glfwSetCursorPosCallback(window, mouse_pos_callback);
 
 	glewExperimental = GL_TRUE; //The magic of GLEW
@@ -183,21 +197,23 @@ int main() {
 
 	Player player;
 
-	auto startTime = std::chrono::high_resolution_clock::now(); //Get time right after initialization (initial time before first start time reset later on)
+	Input::setup();
+
+	auto startTime = chrono::high_resolution_clock::now(); //Get time right after initialization (initial time before first start time reset later on)
 
 	//Main loop
 	while (!glfwWindowShouldClose(window)) {
 
-		auto deltaTime = std::chrono::high_resolution_clock::now() - startTime; //Calculates delta (time since last frame)
+		auto deltaTime = chrono::high_resolution_clock::now() - startTime; //Calculates delta (time since last frame)
 
-		Input::setDelta((int)(std::chrono::duration_cast<std::chrono::nanoseconds>(deltaTime) / timestep));
+		Input::setDelta((int)(chrono::duration_cast<chrono::nanoseconds>(deltaTime) / timestep));
 
 		//Limit FPS to 60 Hz
-		if (std::chrono::duration_cast<std::chrono::nanoseconds>(deltaTime) >= timestep) {
+		if (chrono::duration_cast<chrono::nanoseconds>(deltaTime) >= timestep) {
 
-			std::chrono::duration_cast<std::chrono::microseconds>(deltaTime);
+			chrono::duration_cast<chrono::microseconds>(deltaTime);
 
-			startTime = std::chrono::high_resolution_clock::now(); //Reset time every frame (necessary for propper timing)
+			startTime = chrono::high_resolution_clock::now(); //Reset time every frame (necessary for propper timing)
 
 			glfwPollEvents(); //Checks for events such as glfwWindowShouldClose() or controller input (including callbacks)
 
@@ -264,6 +280,7 @@ int main() {
 			}
 
 			player.move(canMove[0], canMove[1], canMove[2], canMove[3]); //Let movement work
+			player.update();
 
 			//Update all Game Objects
 			Arena::GameObjects *o = arenaObject->first;
@@ -323,8 +340,6 @@ int main() {
 
 	//Destroy all objects
 	player.~Player();
-	Input::setup();
-	SaveData::setup();
 
 	//GLFW
 	glfwDestroyWindow(window); //Destroy window
@@ -343,12 +358,6 @@ int main() {
 void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
 
 	glViewport(0, 0, width, height); //Making your life easier one callback at a time
-
-}
-
-void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods) {
-
-	Input::keyCallback(key, action); //Route keypresses
 
 }
 

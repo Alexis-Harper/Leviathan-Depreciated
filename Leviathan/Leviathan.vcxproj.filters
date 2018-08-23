@@ -90,6 +90,12 @@
     <ClCompile Include="Vector.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
+    <ClCompile Include="Render.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderMatrix.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -146,12 +152,24 @@
     <ClInclude Include="DirectionEnum.h">
       <Filter>Header Files\Global Headers</Filter>
     </ClInclude>
+    <ClInclude Include="Render.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderMatrix.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Assets\shaders\player_fs.glsl">
       <Filter>Resource Files\shaders</Filter>
     </None>
     <None Include="..\Assets\shaders\player_vs.glsl">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="test_fs.glsl">
+      <Filter>Resource Files\shaders</Filter>
+    </None>
+    <None Include="test_vs.glsl">
       <Filter>Resource Files\shaders</Filter>
     </None>
   </ItemGroup>

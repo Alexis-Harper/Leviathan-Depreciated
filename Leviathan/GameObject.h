@@ -21,7 +21,7 @@ public:
 
 private:
 
-	//virtual void loadSound() = 0; //Load sound (will vary based off of class)
+	virtual void loadSound() = 0; //Load sound (will vary based off of class)
 
 	float xPos, yPos; 
 

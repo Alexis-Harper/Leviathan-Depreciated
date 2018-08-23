@@ -95,6 +95,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)\..\ExternalResources\OpenAL 1.1 SDK\include;$(ProjectDir)\..\ExternalResources\glfw-3.2.1\include;$(ProjectDir)\..\ExternalResources\glew-2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>VERSION_MAJOR=1;VERSION_MINOR=0;VERSION_BUILD=0;VERSION_SUFFIX="Alpha Pre-release 0.0.0";%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>glfw3.lib;glfw3dll.lib;opengl32.lib;glu32.lib;OpenAL32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -144,6 +145,8 @@
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="Render.cpp" />
+    <ClCompile Include="RenderMatrix.cpp" />
     <ClCompile Include="SaveData.cpp" />
     <ClCompile Include="Vector.cpp" />
   </ItemGroup>
@@ -162,6 +165,8 @@
     <ClInclude Include="rapidxml_print.hpp" />
     <ClInclude Include="rapidxml_utils.hpp" />
     <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="Render.h" />
+    <ClInclude Include="RenderMatrix.h" />
     <ClInclude Include="SaveData.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="stdafx.h" />
@@ -170,6 +175,8 @@
   <ItemGroup>
     <None Include="..\Assets\shaders\player_fs.glsl" />
     <None Include="..\Assets\shaders\player_vs.glsl" />
+    <None Include="test_fs.glsl" />
+    <None Include="test_vs.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

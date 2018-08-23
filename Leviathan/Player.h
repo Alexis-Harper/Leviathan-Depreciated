@@ -5,9 +5,6 @@
 
 #include "DirectionEnum.h"
 
-#include <fstream>
-#include <sstream>
-
 #include "Rectangle.h"
 
 class Player {
@@ -60,14 +57,11 @@ private:
 
 	int direction; //Direction for graphics
 
-	unsigned char *image; //Image pointer
+	//unsigned char *image; //Image pointer
 
-	int width, height, comp; //Image dimentions
+	//int width, height, comp; //Image dimentions
 
 	unsigned int texture, VBO, VAO, EBO; //Buffers
-
-	int vertexShader; //Vertex shader pointer
-	int fragmentShader; //Fragment shader pointer
 
 	unsigned int shaderProgram; //Dual shader program pointer
 
